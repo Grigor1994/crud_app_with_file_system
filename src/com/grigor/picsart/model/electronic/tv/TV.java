@@ -16,12 +16,6 @@ public abstract class TV extends ElectronicItem {
         this.matrixType = matrixType;
     }
 
-    public void printTvInfo() {
-        System.out.println("Brand: " + getBrand() + "\n Model: " + getModel() + "\n Serial No: " + getSerialNumber()
-                + "\n Produce year: " + getProduceYear() + "\n Weight: " + getWeight() + " kg." + "\n Display: " + display + "\n Response time: " + responseTime + "hz"
-                + "\n Screen Diagonal: " + screenDiagonal + " inch" + "\n Matrix type: " + matrixType);
-    }
-
     public abstract void showTvProgram();
 
     @Override
@@ -32,5 +26,11 @@ public abstract class TV extends ElectronicItem {
     @Override
     public void turnOff() {
         System.out.println("Tv off");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " kg." + "\n Display: " + display + "\n Response time: " + responseTime + "hz"
+                + "\n Screen Diagonal: " + screenDiagonal + " inch" + "\n Matrix type: " + matrixType;
     }
 }

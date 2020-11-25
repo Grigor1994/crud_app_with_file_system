@@ -12,11 +12,6 @@ public class SmartTV extends TV {
         this.bluetooth = bluetooth;
     }
 
-    @Override
-    public void printTvInfo() {
-        super.printTvInfo();
-        System.out.println("Operating system: " + operatingSystem + "\n WiFi: " + WiFi + "\n Bluetooth: " + bluetooth);
-    }
 
     @Override
     public void showTvProgram() {
@@ -29,5 +24,10 @@ public class SmartTV extends TV {
 
     public void playGame() {
         System.out.println("Playing game.");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nOperating system: " + operatingSystem + "\n WiFi: " + WiFi + "\n Bluetooth: " + bluetooth;
     }
 }

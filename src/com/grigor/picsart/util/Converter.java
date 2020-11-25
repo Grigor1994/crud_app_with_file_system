@@ -41,7 +41,7 @@ public class Converter {
                             + mobilePhone.getNetworkType() + "," + mobilePhone.isDualSim() + ","
                             + mobilePhone.isTouchScreen() + "," + mobilePhone.isMemoryCardSlot() + ","
                             + mobilePhone.isMainCamera() + "," + mobilePhone.isSelfieCamera() + ","
-                            + mobilePhone.isBluetooth() + "," + mobilePhone.getMemory()+"\n";
+                            + mobilePhone.isBluetooth() + "," + mobilePhone.getMemory() + "\n";
             saveToFile(path, outputText, append);
         }
     }

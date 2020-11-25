@@ -38,11 +38,7 @@ public class Main {
                 default:
                     System.out.println("Input correct command please");
                     break;
-
             }
-
         }
     }
-
-
 }
