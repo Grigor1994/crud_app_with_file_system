@@ -1,0 +1,3 @@
+Nokia,6233,744545L44E,2005,103,S40,900,TFT,GSM 850,false,false,true,true,false,true,32
+Samsung,SGH-E250,74A6T7194E,2010,110,Bada OS,100,TFT,GSM 900,false,false,true,true,false,true,16
+Nokia,N73,81981434L79N,2007,170,Symbian S60,1100,TFT,3G,false,false,true,true,true,true,45
