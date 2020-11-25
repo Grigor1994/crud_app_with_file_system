@@ -7,7 +7,6 @@ public abstract class ElectronicItem {
     private final int produceYear;
     private final int weight;
 
-
     public ElectronicItem(String brand, String model, String serialNumber, int produceYear, int weight) {
         this.brand = brand;
         this.model = model;
@@ -24,21 +23,17 @@ public abstract class ElectronicItem {
         return brand;
     }
 
-
     public String getModel() {
         return model;
     }
-
 
     public String getSerialNumber() {
         return serialNumber;
     }
 
-
     public int getProduceYear() {
         return produceYear;
     }
-
 
     public int getWeight() {
         return weight;
