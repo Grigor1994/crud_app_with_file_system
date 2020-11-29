@@ -18,8 +18,10 @@ public class TvService {
     private static final String PATH = "tv.txt";
 
     public static SmartTV createSmartTv() {
+
         Scanner scanner=new Scanner(System.in);
         SmartTV smartTV = new SmartTV();
+
         System.out.println("Input Tv brand: ");
         smartTV.setBrand(scanner.nextLine());
         System.out.println("Input Tv model: ");
@@ -45,6 +47,7 @@ public class TvService {
         smartTV.setHasWiFi(scanner.nextBoolean());
         System.out.println("Is bluetooth..? Input please `true` or `false`");
         smartTV.setHasBluetooth(scanner.nextBoolean());
+
         return smartTV;
     }
 

@@ -58,6 +58,7 @@ public class PhoneService {
         mobilePhone.setBluetooth(scanner.nextBoolean());
         System.out.println("Input memory size: ");
         mobilePhone.setMemory(scanner.nextInt());
+
         return mobilePhone;
     }
 
