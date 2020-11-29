@@ -1,55 +1,50 @@
 package com.grigor.picsart.util;
 
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
+import com.grigor.picsart.model.electronic.tv.SmartTV;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import static com.grigor.picsart.util.ConstantValues.COMMA;
 
 public class Converter {
 
     public static MobilePhone convertToMobilePhone(String data) {
-        String[] fileData = data.split(",");
-        String brand = fileData[0];
-        String model = fileData[1];
-        String serialNumber = fileData[2];
-        int produceYear = Integer.parseInt(fileData[3]);
-        int weight = Integer.parseInt(fileData[4]);
-        String operatingSystem = fileData[5];
-        int batteryCapacity = Integer.parseInt(fileData[6]);
-        String display = fileData[7];
-        String networkType = fileData[8];
-        boolean isDualSim = Boolean.parseBoolean(fileData[9]);
-        boolean isTouchScreen = Boolean.parseBoolean(fileData[10]);
-        boolean isMemoryCardSlot = Boolean.parseBoolean(fileData[11]);
-        boolean isMainCamera = Boolean.parseBoolean(fileData[12]);
-        boolean isSelfieCamera = Boolean.parseBoolean(fileData[13]);
-        boolean bluetooth = Boolean.parseBoolean(fileData[14]);
-        int memory = Integer.parseInt(fileData[15]);
-        return new MobilePhone(brand, model, serialNumber, produceYear, weight, operatingSystem, batteryCapacity,
-                display, networkType, isDualSim, isTouchScreen, isMemoryCardSlot, isMainCamera, isSelfieCamera, bluetooth, memory);
+
+        MobilePhone mobilePhone = new MobilePhone();
+        String[] fileData = data.split(COMMA);
+
+        mobilePhone.setBrand(fileData[0]);
+        mobilePhone.setModel(fileData[1]);
+        mobilePhone.setSerialNumber(fileData[2]);
+        mobilePhone.setProduceYear(Integer.parseInt(fileData[3]));
+        mobilePhone.setWeight(Integer.parseInt(fileData[4]));
+        mobilePhone.setOperatingSystem(fileData[5]);
+        mobilePhone.setBatteryCapacity(Integer.parseInt(fileData[6]));
+        mobilePhone.setDisplayType(fileData[7]);
+        mobilePhone.setNetworkType(fileData[8]);
+        mobilePhone.setDualSim(Boolean.parseBoolean(fileData[9]));
+        mobilePhone.setTouchScreen(Boolean.parseBoolean(fileData[10]));
+        mobilePhone.setHasMemoryCardSlot(Boolean.parseBoolean(fileData[11]));
+        mobilePhone.setHasMainCamera(Boolean.parseBoolean(fileData[12]));
+        mobilePhone.setSelfieCamera(Boolean.parseBoolean(fileData[13]));
+        mobilePhone.setBluetooth(Boolean.parseBoolean(fileData[14]));
+        mobilePhone.setMemory(Integer.parseInt(fileData[15]));
+        return mobilePhone;
     }
 
-    public static void convertMobilePhoneToFile(List<MobilePhone> mobilePhones, String path, boolean append) throws IOException {
-        for (MobilePhone mobilePhone : mobilePhones) {
-            String outputText =
-                    mobilePhone.getBrand() + "," + mobilePhone.getModel() + ","
-                            + mobilePhone.getSerialNumber() + "," + mobilePhone.getProduceYear() + ","
-                            + mobilePhone.getWeight() + "," + mobilePhone.getOperatingSystem() + ","
-                            + mobilePhone.getBatteryCapacity() + "," + mobilePhone.getDisplay() + ","
-                            + mobilePhone.getNetworkType() + "," + mobilePhone.isDualSim() + ","
-                            + mobilePhone.isTouchScreen() + "," + mobilePhone.isMemoryCardSlot() + ","
-                            + mobilePhone.isMainCamera() + "," + mobilePhone.isSelfieCamera() + ","
-                            + mobilePhone.isBluetooth() + "," + mobilePhone.getMemory() + "\n";
-            saveToFile(path, outputText, append);
-        }
-    }
+    public static SmartTV convertToSmartTv(String data) {
 
-    private static void saveToFile(String path, String text, boolean append) throws IOException {
-        FileWriter fileWriter = new FileWriter(path, append);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.println(text);
-        printWriter.close();
+        SmartTV smartTV = new SmartTV();
+        String[] tvData = data.split(COMMA);
+
+        smartTV.setBrand(tvData[0]);
+        smartTV.setModel(tvData[1]);
+        smartTV.setSerialNumber(tvData[2]);
+        smartTV.setProduceYear(Integer.parseInt(tvData[3]));
+        smartTV.setWeight(Integer.parseInt(tvData[4]));
+        smartTV.setOperatingSystem(tvData[5]);
+        smartTV.setHasWiFi(Boolean.parseBoolean(tvData[6]));
+        smartTV.setHasBluetooth(Boolean.parseBoolean(tvData[7]));
+
+        return smartTV;
     }
 }

@@ -1,23 +1,36 @@
 package com.grigor.picsart.model.electronic;
 
 public abstract class ElectronicItem {
-    private final String brand;
-    private final String model;
-    private final String serialNumber;
-    private final int produceYear;
-    private final int weight;
 
-    public ElectronicItem(String brand, String model, String serialNumber, int produceYear, int weight) {
-        this.brand = brand;
-        this.model = model;
-        this.serialNumber = serialNumber;
-        this.produceYear = produceYear;
-        this.weight = weight;
-    }
+    private String brand;
+    private String model;
+    private String serialNumber;
+    private int produceYear;
+    private int weight;
 
     public abstract void turnOn();
 
     public abstract void turnOff();
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public void setProduceYear(int produceYear) {
+        this.produceYear = produceYear;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
 
     public String getBrand() {
         return brand;
@@ -46,6 +59,6 @@ public abstract class ElectronicItem {
                         ", model='" + model + '\'' + "\n" +
                         ", serialNumber='" + serialNumber + '\'' + "\n" +
                         ", produceYear=" + produceYear + "\n" +
-                        ", weight=" + weight + "g.";
+                        ", weight=" + weight;
     }
 }

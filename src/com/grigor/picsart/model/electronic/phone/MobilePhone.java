@@ -1,34 +1,18 @@
 package com.grigor.picsart.model.electronic.phone;
 
 public class MobilePhone extends Phone {
-    private final String operatingSystem;
-    private final int batteryCapacity;
-    private final String display;
-    private final String networkType;
-    private final boolean isDualSim;
-    private final boolean isTouchScreen;
-    private final boolean isMemoryCardSlot;
-    private final boolean isMainCamera;
-    private final boolean isSelfieCamera;
-    private final boolean bluetooth;
-    private final int memory;
 
-    public MobilePhone(String brand, String model, String serialNumber, int produceYear, int weight, String operationSystem,
-                       int batteryCapacity, String display, String networkType, boolean isDualSim, boolean isTouchScreen,
-                       boolean isMemoryCardSlot, boolean isMainCamera, boolean isSelfieCamera, boolean bluetooth, int memory) {
-        super(brand, model, serialNumber, produceYear, weight);
-        this.operatingSystem = operationSystem;
-        this.batteryCapacity = batteryCapacity;
-        this.display = display;
-        this.networkType = networkType;
-        this.isDualSim = isDualSim;
-        this.isTouchScreen = isTouchScreen;
-        this.isMemoryCardSlot = isMemoryCardSlot;
-        this.isMainCamera = isMainCamera;
-        this.isSelfieCamera = isSelfieCamera;
-        this.bluetooth = bluetooth;
-        this.memory = memory;
-    }
+    private String operatingSystem;
+    private int batteryCapacity;
+    private String displayType;
+    private String networkType;
+    private boolean isDualSim;
+    private boolean isTouchScreen;
+    private boolean hasMemoryCardSlot;
+    private boolean hasMainCamera;
+    private boolean isSelfieCamera;
+    private boolean bluetooth;
+    private int memory;
 
     public void takePhoto() {
         System.out.println("Take a photo");
@@ -58,21 +42,48 @@ public class MobilePhone extends Phone {
 
     }
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "\n operatingSystem='" + operatingSystem + '\'' + "\n" +
-                ", batteryCapacity=" + batteryCapacity +"mAh"+ "\n" +
-                ", display='" + display + '\'' + "\n" +
-                ", networkType='" + networkType + '\'' + "\n" +
-                ", isDualSim=" + isDualSim + "\n" +
-                ", isTouchScreen=" + isTouchScreen + "\n" +
-                ", isMemoryCardSlot=" + isMemoryCardSlot + "\n" +
-                ", isMainCamera=" + isMainCamera + "\n" +
-                ", isSelfieCamera=" + isSelfieCamera + "\n" +
-                ", bluetooth=" + bluetooth + "\n" +
-                ", memory=" + memory + "mb"
-                +"\n--------------------------------------";
+    public void setOperatingSystem(String operatingSystem) {
+        this.operatingSystem = operatingSystem;
+    }
+
+    public void setBatteryCapacity(int batteryCapacity) {
+        this.batteryCapacity = batteryCapacity;
+    }
+
+    public void setDisplayType(String displayType) {
+        this.displayType = displayType;
+    }
+
+    public void setNetworkType(String networkType) {
+        this.networkType = networkType;
+    }
+
+    public void setDualSim(boolean dualSim) {
+        isDualSim = dualSim;
+    }
+
+    public void setTouchScreen(boolean touchScreen) {
+        isTouchScreen = touchScreen;
+    }
+
+    public void setHasMemoryCardSlot(boolean hasMemoryCardSlot) {
+        this.hasMemoryCardSlot = hasMemoryCardSlot;
+    }
+
+    public void setHasMainCamera(boolean hasMainCamera) {
+        this.hasMainCamera = hasMainCamera;
+    }
+
+    public void setSelfieCamera(boolean selfieCamera) {
+        isSelfieCamera = selfieCamera;
+    }
+
+    public void setBluetooth(boolean bluetooth) {
+        this.bluetooth = bluetooth;
+    }
+
+    public void setMemory(int memory) {
+        this.memory = memory;
     }
 
     public String getOperatingSystem() {
@@ -83,8 +94,8 @@ public class MobilePhone extends Phone {
         return batteryCapacity;
     }
 
-    public String getDisplay() {
-        return display;
+    public String getDisplayType() {
+        return displayType;
     }
 
     public String getNetworkType() {
@@ -99,12 +110,12 @@ public class MobilePhone extends Phone {
         return isTouchScreen;
     }
 
-    public boolean isMemoryCardSlot() {
-        return isMemoryCardSlot;
+    public boolean isHasMemoryCardSlot() {
+        return hasMemoryCardSlot;
     }
 
-    public boolean isMainCamera() {
-        return isMainCamera;
+    public boolean isHasMainCamera() {
+        return hasMainCamera;
     }
 
     public boolean isSelfieCamera() {
@@ -117,5 +128,22 @@ public class MobilePhone extends Phone {
 
     public int getMemory() {
         return memory;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\n operatingSystem='" + operatingSystem + '\'' + "\n" +
+                ", batteryCapacity=" + batteryCapacity + "mAh" + "\n" +
+                ", display='" + displayType + '\'' + "\n" +
+                ", networkType='" + networkType + '\'' + "\n" +
+                ", isDualSim=" + isDualSim + "\n" +
+                ", isTouchScreen=" + isTouchScreen + "\n" +
+                ", isMemoryCardSlot=" + hasMemoryCardSlot + "\n" +
+                ", isMainCamera=" + hasMainCamera + "\n" +
+                ", isSelfieCamera=" + isSelfieCamera + "\n" +
+                ", bluetooth=" + bluetooth + "\n" +
+                ", memory=" + memory + "mb"
+                + "\n--------------------------------------";
     }
 }

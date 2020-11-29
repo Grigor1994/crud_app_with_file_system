@@ -1,19 +1,10 @@
 package com.grigor.picsart.model.electronic.tv;
 
 public class SmartTV extends TV {
-    private final String operatingSystem;
-    private final boolean WiFi;
-    private final boolean bluetooth;
+    private String operatingSystem;
+    private boolean hasWiFi;
+    private boolean hasBluetooth;
 
-    public SmartTV(String brand, String model, String serialNumber, int produceYear, int weight, String display, int responseTime, int screenDiagonal, String matrixType, String operatingSystem, boolean wiFi, boolean bluetooth) {
-        super(brand, model, serialNumber, produceYear, weight, display, responseTime, screenDiagonal, matrixType);
-        this.operatingSystem = operatingSystem;
-        WiFi = wiFi;
-        this.bluetooth = bluetooth;
-    }
-
-
-    @Override
     public void showTvProgram() {
         System.out.println("Show tv program");
     }
@@ -26,8 +17,32 @@ public class SmartTV extends TV {
         System.out.println("Playing game.");
     }
 
+    public String getOperatingSystem() {
+        return operatingSystem;
+    }
+
+    public void setOperatingSystem(String operatingSystem) {
+        this.operatingSystem = operatingSystem;
+    }
+
+    public boolean isHasWiFi() {
+        return hasWiFi;
+    }
+
+    public void setHasWiFi(boolean hasWiFi) {
+        this.hasWiFi = hasWiFi;
+    }
+
+    public boolean isHasBluetooth() {
+        return hasBluetooth;
+    }
+
+    public void setHasBluetooth(boolean hasBluetooth) {
+        this.hasBluetooth = hasBluetooth;
+    }
+
     @Override
     public String toString() {
-        return super.toString() + "\nOperating system: " + operatingSystem + "\n WiFi: " + WiFi + "\n Bluetooth: " + bluetooth;
+        return super.toString() + "\nOperating system: " + operatingSystem + "\n WiFi: " + hasWiFi + "\n Bluetooth: " + hasBluetooth;
     }
 }

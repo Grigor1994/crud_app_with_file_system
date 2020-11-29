@@ -3,18 +3,11 @@ package com.grigor.picsart.model.electronic.tv;
 import com.grigor.picsart.model.electronic.ElectronicItem;
 
 public abstract class TV extends ElectronicItem {
-    private final String display;
-    private final int responseTime;
-    private final int screenDiagonal;
-    private final String matrixType;
+    private String displayType;
+    private int responseTime;
+    private int screenDiagonal;
+    private String matrixType;
 
-    public TV(String brand, String model, String serialNumber, int produceYear, int weight, String display, int responseTime, int screenDiagonal, String matrixType) {
-        super(brand, model, serialNumber, produceYear, weight);
-        this.display = display;
-        this.responseTime = responseTime;
-        this.screenDiagonal = screenDiagonal;
-        this.matrixType = matrixType;
-    }
 
     public abstract void showTvProgram();
 
@@ -28,9 +21,41 @@ public abstract class TV extends ElectronicItem {
         System.out.println("Tv off");
     }
 
+    public String getDisplayType() {
+        return displayType;
+    }
+
+    public void setDisplayType(String displayType) {
+        this.displayType = displayType;
+    }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
+    }
+
+    public int getScreenDiagonal() {
+        return screenDiagonal;
+    }
+
+    public void setScreenDiagonal(int screenDiagonal) {
+        this.screenDiagonal = screenDiagonal;
+    }
+
+    public String getMatrixType() {
+        return matrixType;
+    }
+
+    public void setMatrixType(String matrixType) {
+        this.matrixType = matrixType;
+    }
+
     @Override
     public String toString() {
-        return super.toString() + " kg." + "\n Display: " + display + "\n Response time: " + responseTime + "hz"
+        return super.toString() + " kg." + "\n Display: " + displayType + "\n Response time: " + responseTime + "hz"
                 + "\n Screen Diagonal: " + screenDiagonal + " inch" + "\n Matrix type: " + matrixType;
     }
 }

@@ -2,4 +2,4 @@ Nokia,6233,744545L44E,2005,103,S40,900,TFT,GSM 850,false,false,true,true,false,t
 Samsung,SGH-E250,74A6T7194E,2010,110,Bada OS,100,TFT,GSM 900,false,false,true,true,false,true,16
 Nokia,N73,81981434L79N,2007,170,Symbian S60,1100,TFT,3G,false,false,true,true,true,true,45
 Siemens,CX75,ASHFKA451E,1998,102,Siemens OS,560,TFT,GSM,false,false,false,true,false,true,15
-
+Motorola,L7E,FHSJKHD45,2005,150,Motorola OS,850,TFT,GSM,false,false,true,true,false,true,64
