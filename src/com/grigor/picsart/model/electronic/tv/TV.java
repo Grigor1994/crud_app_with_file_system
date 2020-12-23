@@ -8,7 +8,6 @@ public abstract class TV extends ElectronicItem {
     private int screenDiagonal;
     private String matrixType;
 
-
     public abstract void showTvProgram();
 
     @Override

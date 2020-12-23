@@ -1,6 +1,6 @@
 package com.grigor.picsart.model.electronic.tv;
 
-public class SmartTV extends TV {
+public class SmartTV extends DigitalTV {
     private String operatingSystem;
     private boolean hasWiFi;
     private boolean hasBluetooth;
@@ -43,6 +43,6 @@ public class SmartTV extends TV {
 
     @Override
     public String toString() {
-        return super.toString() + "\nOperating system: " + operatingSystem + "\n WiFi: " + hasWiFi + "\n Bluetooth: " + hasBluetooth;
+        return super.toString() + "\nOperating system: " + operatingSystem + "\n WiFi: " + hasWiFi + "\n Bluetooth: " + hasBluetooth + "\n";
     }
 }

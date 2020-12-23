@@ -5,7 +5,7 @@ public abstract class ElectronicItem {
     private String brand;
     private String model;
     private String serialNumber;
-    private int produceYear;
+    private int releaseYear;
     private int weight;
 
     public abstract void turnOn();
@@ -24,8 +24,8 @@ public abstract class ElectronicItem {
         this.serialNumber = serialNumber;
     }
 
-    public void setProduceYear(int produceYear) {
-        this.produceYear = produceYear;
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     public void setWeight(int weight) {
@@ -44,8 +44,8 @@ public abstract class ElectronicItem {
         return serialNumber;
     }
 
-    public int getProduceYear() {
-        return produceYear;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
     public int getWeight() {
@@ -58,7 +58,7 @@ public abstract class ElectronicItem {
                 "\n brand='" + brand + '\'' + "\n" +
                         ", model='" + model + '\'' + "\n" +
                         ", serialNumber='" + serialNumber + '\'' + "\n" +
-                        ", produceYear=" + produceYear + "\n" +
+                        ", produceYear=" + releaseYear + "\n" +
                         ", weight=" + weight;
     }
 }

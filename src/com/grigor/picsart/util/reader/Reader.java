@@ -1,7 +1,10 @@
-package com.grigor.picsart.util;
+package com.grigor.picsart.util.reader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,5 +22,10 @@ public class Reader {
             data.add(input.nextLine());
         }
         return data;
+    }
+
+    public static String[] read(String path) throws IOException {
+        String data = Files.readAllLines(Paths.get("database.txt")).toArray(new String[0])[0];
+        return data.split(",");
     }
 }

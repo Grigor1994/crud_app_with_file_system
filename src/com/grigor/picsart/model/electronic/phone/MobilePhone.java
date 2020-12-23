@@ -14,13 +14,7 @@ public class MobilePhone extends Phone {
     private boolean bluetooth;
     private int memory;
 
-    public void takePhoto() {
-        System.out.println("Take a photo");
-    }
 
-    public void shootVideo() {
-        System.out.println("Shoot a video");
-    }
 
     @Override
     public void call(String name) {

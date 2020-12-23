@@ -1,54 +1,59 @@
 package com.grigor.picsart.model.electronic.phone;
 
 public class SmartPhone extends MobilePhone {
-    private boolean isWiFi;
-    private boolean isGps;
-    private boolean isFingerPrint;
-    private boolean isFaceId;
 
-    public void playMusic() {
-        System.out.println("Play music");
+    private boolean hasWiFi;
+    private boolean hasGps;
+    private boolean hasFingerPrint;
+    private boolean hasFaceId;
+
+    public boolean isHasWiFi() {
+        return hasWiFi;
     }
 
-    public boolean isWiFi() {
-        return isWiFi;
+    public void setHasWiFi(boolean hasWiFi) {
+        this.hasWiFi = hasWiFi;
     }
 
-    public void setWiFi(boolean wiFi) {
-        isWiFi = wiFi;
+    public boolean isHasGps() {
+        return hasGps;
     }
 
-    public boolean isGps() {
-        return isGps;
+    public void setHasGps(boolean hasGps) {
+        this.hasGps = hasGps;
     }
 
-    public void setGps(boolean gps) {
-        isGps = gps;
+    public boolean isHasFingerPrint() {
+        return hasFingerPrint;
     }
 
-    public boolean isFingerPrint() {
-        return isFingerPrint;
+    public void setHasFingerPrint(boolean hasFingerPrint) {
+        this.hasFingerPrint = hasFingerPrint;
     }
 
-    public void setFingerPrint(boolean fingerPrint) {
-        isFingerPrint = fingerPrint;
+    public boolean isHasFaceId() {
+        return hasFaceId;
     }
 
-    public boolean isFaceId() {
-        return isFaceId;
+    public void setHasFaceId(boolean hasFaceId) {
+        this.hasFaceId = hasFaceId;
     }
 
-    public void setFaceId(boolean faceId) {
-        isFaceId = faceId;
+    public void takePhoto() {
+        System.out.println("Take a photo");
+    }
+
+    public void shootVideo() {
+        System.out.println("Shoot a video");
     }
 
     @Override
     public String toString() {
         return "SmartPhone{" +
-                "isWiFi=" + isWiFi +
-                ", isGps=" + isGps +
-                ", isFingerPrint=" + isFingerPrint +
-                ", isFaceId=" + isFaceId +
+                "isWiFi=" + hasWiFi +
+                ", isGps=" + hasGps +
+                ", isFingerPrint=" + hasFingerPrint +
+                ", isFaceId=" + hasFaceId +
                 "} " + super.toString();
     }
 }
