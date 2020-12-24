@@ -68,7 +68,7 @@ public class RegisterService {
     }
 
     private static boolean checkDuplicates(String userName) throws IOException {
-        for (User user : UserDao.getUser()) {
+        for (User user : UserDao.getUsers()) {
             if (user.getUserName().equalsIgnoreCase(userName)) {
                 return false;
             }

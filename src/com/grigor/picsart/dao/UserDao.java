@@ -15,7 +15,7 @@ import java.util.List;
 public class UserDao {
     private static final String FILE_PATH = "database.txt";
 
-    public static List<User> getUser() throws IOException {
+    public static List<User> getUsers() throws IOException {
         List<String> read = Files.readAllLines(Paths.get(FILE_PATH));
         List<User> userList = new ArrayList<>();
         for (String str : read) {

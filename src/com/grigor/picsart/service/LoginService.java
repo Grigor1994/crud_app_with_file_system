@@ -20,7 +20,7 @@ public class LoginService {
     }
 
     private static boolean loginValidation(String userName, String password) throws IOException {
-        for (User user : UserDao.getUser()) {
+        for (User user : UserDao.getUsers()) {
             if (user.getUserName().equalsIgnoreCase(userName) && user.getPassword().equals(Converter.md5(password))) {
                 return true;
             }
