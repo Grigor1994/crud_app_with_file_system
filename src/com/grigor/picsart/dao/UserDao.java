@@ -25,11 +25,15 @@ public class UserDao {
         return userList;
     }
 
-    public static void registerUser(User user) throws IOException {
+    public static void registerUser(User user)  {
         String newUser = user.getName() + Constants.COMMA + user.getSurName() +
                 Constants.COMMA + user.getUserName() +
                 Constants.COMMA + user.getEmail() + Constants.COMMA +
                 Converter.md5(user.getPassword()) + "\n";
-        Files.write(Paths.get(FILE_PATH), newUser.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+        try {
+            Files.write(Paths.get(FILE_PATH), newUser.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

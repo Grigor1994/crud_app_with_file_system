@@ -1,11 +1,13 @@
 package com.grigor.picsart.service;
 
+import com.grigor.picsart.model.credential.Credentials;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
+import com.grigor.picsart.model.user.User;
 
 import java.util.Scanner;
 
-public class ScannerService {
+public class ConsoleReader {
 
     public static SmartTV createSmartTv() {
         Scanner scanner = new Scanner(System.in);
@@ -42,7 +44,7 @@ public class ScannerService {
 
     public static MobilePhone createMobilePhone() {
 
-        Scanner scanner= new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         MobilePhone mobilePhone = new MobilePhone();
 
         System.out.println("Input phone brand: ");
@@ -83,4 +85,29 @@ public class ScannerService {
         return mobilePhone;
     }
 
+
+    public static User createUser() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input name ->");
+        String name = scanner.nextLine();
+        System.out.println("Input surname ->");
+        String surName = scanner.nextLine();
+        System.out.println("Input user name -> (minimum 10 symbols.)");
+        String userName = scanner.nextLine();
+        System.out.println("Input email address ->");
+        String email = scanner.nextLine();
+        System.out.println("Input password -> (password will be minimum 8 symbols and will contain 2 uppercase letter and 3 number.)");
+        String password = scanner.nextLine();
+        return new User(name, surName, userName, email, password);
+    }
+
+    public static Credentials readCredentials() {
+        System.out.println("Input your login and password");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Login -> ");
+        String userName = scanner.nextLine();
+        System.out.println("Password ->");
+        String password = scanner.nextLine();
+        return new Credentials(userName, password);
+    }
 }

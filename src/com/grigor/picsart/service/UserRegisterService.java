@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterService {
+public class UserRegisterService {
 
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -16,9 +16,9 @@ public class RegisterService {
 
     private static final Pattern VALID_USERNAME_REGEX = Pattern.compile("^[A-Za-z_][A-Za-z0-9_]{9,29}$");
 
-    public static boolean registerUser(User user) throws IOException {
+    public static boolean registerUser(User user) {
         if (!userValidation(user)) {
-            registerUser(UserService.createUser());
+            registerUser(ConsoleReader.createUser());
             return false;
         } else {
             UserDao.registerUser(user);
@@ -26,7 +26,7 @@ public class RegisterService {
         return true;
     }
 
-    private static boolean userValidation(User user) throws IOException {
+    private static boolean userValidation(User user) {
         // check user name
         if (user.getUserName().equals("")) {
             System.out.println("Name field cannot be empty");
@@ -67,11 +67,15 @@ public class RegisterService {
         return matcher.find();
     }
 
-    private static boolean checkDuplicates(String userName) throws IOException {
-        for (User user : UserDao.getUsers()) {
-            if (user.getUserName().equalsIgnoreCase(userName)) {
-                return false;
+    private static boolean checkDuplicates(String userName) {
+        try {
+            for (User user : UserDao.getUsers()) {
+                if (user.getUserName().equalsIgnoreCase(userName)) {
+                    return false;
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return true;
     }

@@ -11,46 +11,43 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean isMenuActive = true;
         System.out.println("1 - Login");
         System.out.println("2-> Register");
         System.out.println("3-> Exit");
-        try {
-            while (isMenuActive) {
-                int input = scanner.nextInt();
-                switch (input) {
-                    case 1:
-                        if (LoginService.isLoginSuccessful()) {
-                            System.out.println("Login successful");
-                            extracted(scanner, true);
-                        } else {
-                            System.out.println("The entered username or password is incorrect.");
-                        }
-                        break;
-                    case 2:
-                        if (RegisterService.registerUser(UserService.createUser())) {
-                            System.out.println("Register successfully!");
-                            extracted(scanner, true);
-                        }
-                        break;
-                    case 3:
-                        isMenuActive = false;
-                    default:
-                        System.out.println("Incorrect command number.");
-                        break;
-                }
+        outer:
+        while (true) {
+            int input = scanner.nextInt();
+            switch (input) {
+                case 1:
+                    if (LoginService.login(ConsoleReader.readCredentials())) {
+                        System.out.println("Login successful");
+                        showMenu(scanner);
+                    } else {
+                        System.out.println("The entered username or password is incorrect.");
+                    }
+                    break;
+                case 2:
+                    if (UserRegisterService.registerUser(ConsoleReader.createUser())) {
+                        System.out.println("Register successfully!");
+                        showMenu(scanner);
+                    }
+                    break;
+                case 3:
+                    break outer;
+                default:
+                    System.out.println("Incorrect command number.");
+                    break;
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
     }
 
-    private static void extracted(Scanner scanner, boolean isMenuActive) {
+    private static void showMenu(Scanner scanner) {
         try {
-            while (isMenuActive) {
+            outer:
+            while (true) {
 
                 System.out.println("\n Menu");
                 System.out.println("Input command number");
@@ -65,7 +62,7 @@ public class Main {
 
                 switch (input) {
                     case 1:
-                        PhoneDao.addMobilePhone(ScannerService.createMobilePhone());
+                        PhoneDao.addMobilePhone(ConsoleReader.createMobilePhone());
                         break;
                     case 2:
                         for (MobilePhone mobilePhone : PhoneDao.getPhoneList()) {
@@ -76,7 +73,7 @@ public class Main {
                         PhoneService.printNewestPhone(PhoneDao.getPhoneList());
                         break;
                     case 4:
-                        TvDao.addSmartTv(ScannerService.createSmartTv());
+                        TvDao.addSmartTv(ConsoleReader.createSmartTv());
                         break;
                     case 5:
                         for (SmartTV smartTV : TvDao.getSmartTvList()) {
@@ -84,9 +81,8 @@ public class Main {
                         }
                         break;
                     case 6:
-                        isMenuActive = false;
                         System.out.println("Bye!");
-                        break;
+                        break outer;
                     default:
                         System.out.println("Input correct command please");
                         break;
