@@ -1,9 +1,7 @@
 package com.grigor.picsart.service;
 
+import com.grigor.picsart.dao.UserDao;
 import com.grigor.picsart.model.user.User;
-import com.grigor.picsart.util.Constants;
-import com.grigor.picsart.util.reader.Reader;
-import com.grigor.picsart.util.writer.Writer;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -23,7 +21,7 @@ public class RegisterService {
             registerUser(UserService.createUser());
             return false;
         } else {
-            Writer.writeUserToFile(user);
+            UserDao.registerUser(user);
         }
         return true;
     }
@@ -70,8 +68,8 @@ public class RegisterService {
     }
 
     private static boolean checkDuplicates(String userName) throws IOException {
-        for (String s : Reader.read(Constants.FILE_PATH)) {
-            if (userName.equals(s)) {
+        for (User user : UserDao.getUser()) {
+            if (user.getUserName().equalsIgnoreCase(userName)) {
                 return false;
             }
         }

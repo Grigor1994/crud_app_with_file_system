@@ -1,5 +1,4 @@
-package com.grigor.picsart.service;
-
+package com.grigor.picsart.dao;
 
 import com.grigor.picsart.model.electronic.tv.SmartTV;
 import com.grigor.picsart.util.convert.Converter;
@@ -13,15 +12,15 @@ import java.util.List;
 
 import static com.grigor.picsart.util.Constants.COMMA;
 
-public class TvService {
-    private static final String PATH = "tv.txt";
+public class TvDao {
+    private static final String FILE_PATH = "tv.txt";
 
     public static void addSmartTv(SmartTV smartTV) throws IOException {
-        writeSmartTvToFile(smartTV, PATH, true);
+        writeSmartTvToFile(smartTV, FILE_PATH, true);
     }
 
     public static List<SmartTV> getSmartTvList() throws FileNotFoundException {
-        Reader reader = new Reader(PATH);
+        Reader reader = new Reader(FILE_PATH);
         List<String> data = reader.readAllData();
         List<SmartTV> smartTVS = new ArrayList<>();
         for (String datum : data) {

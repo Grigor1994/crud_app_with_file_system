@@ -1,8 +1,8 @@
 package com.grigor.picsart.service;
 
-import com.grigor.picsart.util.Constants;
+import com.grigor.picsart.dao.UserDao;
+import com.grigor.picsart.model.user.User;
 import com.grigor.picsart.util.convert.Converter;
-import com.grigor.picsart.util.reader.Reader;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -20,7 +20,11 @@ public class LoginService {
     }
 
     private static boolean loginValidation(String userName, String password) throws IOException {
-        String[] database = Reader.read(Constants.FILE_PATH);
-        return database[2].equalsIgnoreCase(userName) && database[4].equals(Converter.md5(password));
+        for (User user : UserDao.getUser()) {
+            if (user.getUserName().equalsIgnoreCase(userName) && user.getPassword().equals(Converter.md5(password))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

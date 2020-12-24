@@ -1,5 +1,7 @@
 package com.grigor.picsart;
 
+import com.grigor.picsart.dao.PhoneDao;
+import com.grigor.picsart.dao.TvDao;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
 import com.grigor.picsart.service.*;
@@ -9,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Scanner scanner = new Scanner(System.in);
         boolean isMenuActive = true;
         System.out.println("1 - Login");
@@ -20,7 +22,7 @@ public class Main {
                 int input = scanner.nextInt();
                 switch (input) {
                     case 1:
-                        if (!LoginService.isLoginSuccessful()) {
+                        if (LoginService.isLoginSuccessful()) {
                             System.out.println("Login successful");
                             extracted(scanner, true);
                         } else {
@@ -63,21 +65,21 @@ public class Main {
 
                 switch (input) {
                     case 1:
-                        PhoneService.addMobilePhone(ScannerService.createMobilePhone());
+                        PhoneDao.addMobilePhone(ScannerService.createMobilePhone());
                         break;
                     case 2:
-                        for (MobilePhone mobilePhone : PhoneService.getPhoneList()) {
+                        for (MobilePhone mobilePhone : PhoneDao.getPhoneList()) {
                             System.out.print(mobilePhone + " ");
                         }
                         break;
                     case 3:
-                        PhoneService.printNewestPhone(PhoneService.getPhoneList());
+                        PhoneService.printNewestPhone(PhoneDao.getPhoneList());
                         break;
                     case 4:
-                        TvService.addSmartTv(ScannerService.createSmartTv());
+                        TvDao.addSmartTv(ScannerService.createSmartTv());
                         break;
                     case 5:
-                        for (SmartTV smartTV : TvService.getSmartTvList()) {
+                        for (SmartTV smartTV : TvDao.getSmartTvList()) {
                             System.out.print(smartTV + " ");
                         }
                         break;

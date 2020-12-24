@@ -24,8 +24,7 @@ public class Reader {
         return data;
     }
 
-    public static String[] read(String path) throws IOException {
-        String data = Files.readAllLines(Paths.get("database.txt")).toArray(new String[0])[0];
-        return data.split(",");
-    }
+//    public static List<String> read(String path) throws IOException {
+//        return Files.readAllLines(Paths.get("database.txt"));
+//    }
 }
