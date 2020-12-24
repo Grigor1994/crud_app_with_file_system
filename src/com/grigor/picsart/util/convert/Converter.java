@@ -26,10 +26,10 @@ public class Converter {
         mobilePhone.setDisplayType(fileData[7]);
         mobilePhone.setNetworkType(fileData[8]);
         mobilePhone.setDualSim(Boolean.parseBoolean(fileData[9]));
-        mobilePhone.setTouchScreen(Boolean.parseBoolean(fileData[10]));
+        mobilePhone.setHasTouchScreen(Boolean.parseBoolean(fileData[10]));
         mobilePhone.setHasMemoryCardSlot(Boolean.parseBoolean(fileData[11]));
         mobilePhone.setHasMainCamera(Boolean.parseBoolean(fileData[12]));
-        mobilePhone.setSelfieCamera(Boolean.parseBoolean(fileData[13]));
+        mobilePhone.setHasSelfieCamera(Boolean.parseBoolean(fileData[13]));
         mobilePhone.setBluetooth(Boolean.parseBoolean(fileData[14]));
         mobilePhone.setMemory(Integer.parseInt(fileData[15]));
         return mobilePhone;

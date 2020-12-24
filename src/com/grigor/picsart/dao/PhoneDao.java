@@ -36,8 +36,8 @@ public class PhoneDao {
                         + mobilePhone.getWeight() + COMMA + mobilePhone.getOperatingSystem() + COMMA
                         + mobilePhone.getBatteryCapacity() + COMMA + mobilePhone.getDisplayType() + COMMA
                         + mobilePhone.getNetworkType() + COMMA + mobilePhone.isDualSim() + COMMA
-                        + mobilePhone.isTouchScreen() + COMMA + mobilePhone.isHasMemoryCardSlot() + COMMA
-                        + mobilePhone.isHasMainCamera() + COMMA + mobilePhone.isSelfieCamera() + COMMA
+                        + mobilePhone.isHasTouchScreen() + COMMA + mobilePhone.isHasMemoryCardSlot() + COMMA
+                        + mobilePhone.isHasMainCamera() + COMMA + mobilePhone.isHasSelfieCamera() + COMMA
                         + mobilePhone.isBluetooth() + COMMA + mobilePhone.getMemory() + "\n";
         Writer.writeToFile(path, outputText, append);
     }

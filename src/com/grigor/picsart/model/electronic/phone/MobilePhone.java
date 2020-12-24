@@ -7,14 +7,12 @@ public class MobilePhone extends Phone {
     private String displayType;
     private String networkType;
     private boolean isDualSim;
-    private boolean isTouchScreen;
+    private boolean hasTouchScreen;
     private boolean hasMemoryCardSlot;
     private boolean hasMainCamera;
-    private boolean isSelfieCamera;
+    private boolean hasSelfieCamera;
     private boolean bluetooth;
     private int memory;
-
-
 
     @Override
     public void call(String name) {
@@ -56,8 +54,8 @@ public class MobilePhone extends Phone {
         isDualSim = dualSim;
     }
 
-    public void setTouchScreen(boolean touchScreen) {
-        isTouchScreen = touchScreen;
+    public void setHasTouchScreen(boolean hasTouchScreen) {
+        this.hasTouchScreen = hasTouchScreen;
     }
 
     public void setHasMemoryCardSlot(boolean hasMemoryCardSlot) {
@@ -68,8 +66,8 @@ public class MobilePhone extends Phone {
         this.hasMainCamera = hasMainCamera;
     }
 
-    public void setSelfieCamera(boolean selfieCamera) {
-        isSelfieCamera = selfieCamera;
+    public void setHasSelfieCamera(boolean hasSelfieCamera) {
+        this.hasSelfieCamera = hasSelfieCamera;
     }
 
     public void setBluetooth(boolean bluetooth) {
@@ -100,8 +98,8 @@ public class MobilePhone extends Phone {
         return isDualSim;
     }
 
-    public boolean isTouchScreen() {
-        return isTouchScreen;
+    public boolean isHasTouchScreen() {
+        return hasTouchScreen;
     }
 
     public boolean isHasMemoryCardSlot() {
@@ -112,8 +110,8 @@ public class MobilePhone extends Phone {
         return hasMainCamera;
     }
 
-    public boolean isSelfieCamera() {
-        return isSelfieCamera;
+    public boolean isHasSelfieCamera() {
+        return hasSelfieCamera;
     }
 
     public boolean isBluetooth() {
@@ -132,10 +130,10 @@ public class MobilePhone extends Phone {
                 ", display='" + displayType + '\'' + "\n" +
                 ", networkType='" + networkType + '\'' + "\n" +
                 ", isDualSim=" + isDualSim + "\n" +
-                ", isTouchScreen=" + isTouchScreen + "\n" +
+                ", isTouchScreen=" + hasTouchScreen + "\n" +
                 ", isMemoryCardSlot=" + hasMemoryCardSlot + "\n" +
                 ", isMainCamera=" + hasMainCamera + "\n" +
-                ", isSelfieCamera=" + isSelfieCamera + "\n" +
+                ", isSelfieCamera=" + hasSelfieCamera + "\n" +
                 ", bluetooth=" + bluetooth + "\n" +
                 ", memory=" + memory + "mb"
                 + "\n--------------------------------------";

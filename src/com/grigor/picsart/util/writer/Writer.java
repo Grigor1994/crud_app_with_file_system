@@ -12,5 +12,4 @@ public class Writer {
         printWriter.println(text);
         printWriter.close();
     }
-
 }

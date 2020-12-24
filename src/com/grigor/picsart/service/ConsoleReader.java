@@ -70,13 +70,13 @@ public class ConsoleReader {
         System.out.println("Is dual sim..? Input please `true` or `false`");
         mobilePhone.setDualSim(scanner.nextBoolean());
         System.out.println("Is touch screen..? Input please `true` or `false`");
-        mobilePhone.setTouchScreen(scanner.nextBoolean());
+        mobilePhone.setHasTouchScreen(scanner.nextBoolean());
         System.out.println("Is memory card slot..? Input please `true` or `false`");
         mobilePhone.setHasMemoryCardSlot(scanner.nextBoolean());
         System.out.println("Is main camera..? Input please `true` or `false`");
         mobilePhone.setHasMainCamera(scanner.nextBoolean());
         System.out.println("Is selfie camera..? Input please `true` or `false`");
-        mobilePhone.setSelfieCamera(scanner.nextBoolean());
+        mobilePhone.setHasSelfieCamera(scanner.nextBoolean());
         System.out.println("Is bluetooth..? Input please `true` or `false`");
         mobilePhone.setBluetooth(scanner.nextBoolean());
         System.out.println("Input memory size: ");
@@ -84,7 +84,6 @@ public class ConsoleReader {
 
         return mobilePhone;
     }
-
 
     public static User createUser() {
         Scanner scanner = new Scanner(System.in);
