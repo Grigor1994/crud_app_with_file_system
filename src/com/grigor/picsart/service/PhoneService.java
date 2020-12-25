@@ -8,13 +8,15 @@ public class PhoneService {
 
     private static final int CURRENT_YEAR = 2020;
 
-    public static void printNewestPhone(List<MobilePhone> mobilePhones) {
+    public static MobilePhone getNewestPhone(List<MobilePhone> mobilePhones) {
+        MobilePhone newestPhone = null;
         int min = (CURRENT_YEAR - mobilePhones.get(0).getReleaseYear());
         for (MobilePhone mobilePhone : mobilePhones) {
             if (min > (CURRENT_YEAR - mobilePhone.getReleaseYear())) {
                 min = (CURRENT_YEAR - mobilePhone.getReleaseYear());
-                System.out.print(mobilePhone + " ");
+                newestPhone = mobilePhone;
             }
         }
+        return newestPhone;
     }
 }

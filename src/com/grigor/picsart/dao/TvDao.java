@@ -15,12 +15,22 @@ import static com.grigor.picsart.util.Constants.COMMA;
 public class TvDao {
     private static final String FILE_PATH = "tv.txt";
 
-    public static void addSmartTv(SmartTV smartTV) throws IOException {
-        writeSmartTvToFile(smartTV, FILE_PATH, true);
+    public static void addSmartTv(SmartTV smartTV) {
+        try {
+            writeSmartTvToFile(smartTV);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static List<SmartTV> getSmartTvList() throws FileNotFoundException {
-        Reader reader = new Reader(FILE_PATH);
+    public static List<SmartTV> getSmartTvList() {
+        Reader reader = null;
+        try {
+            reader = new Reader(FILE_PATH);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        assert reader != null;
         List<String> data = reader.readAllData();
         List<SmartTV> smartTVS = new ArrayList<>();
         for (String datum : data) {
@@ -29,12 +39,12 @@ public class TvDao {
         return smartTVS;
     }
 
-    public static void writeSmartTvToFile(SmartTV smartTV, String path, boolean append) throws IOException {
+    public static void writeSmartTvToFile(SmartTV smartTV) throws IOException {
         String text = smartTV.getBrand() + COMMA + smartTV.getModel() + COMMA + smartTV.getSerialNumber() + COMMA
                 + smartTV.getReleaseYear() + COMMA + smartTV.getWeight() + COMMA + smartTV.getDisplayType() + COMMA
                 + smartTV.getResponseTime() + COMMA + smartTV.getScreenDiagonal() + COMMA + smartTV.getMatrixType() + COMMA
                 + smartTV.getOperatingSystem() + COMMA
                 + smartTV.isHasWiFi() + COMMA + smartTV.isHasBluetooth() + "\n";
-        Writer.writeToFile(path, text, append);
+        Writer.writeToFile(FILE_PATH, text, true);
     }
 }

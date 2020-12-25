@@ -32,6 +32,9 @@ public class Main {
                     if (UserRegisterService.registerUser(ConsoleReader.createUser())) {
                         System.out.println("Register successfully!");
                         showMenu(scanner);
+                    } else {
+                        System.out.println("Your entered data does not match the registration requirements, please try again.\n");
+                        ConsoleReader.createUser();
                     }
                     break;
                 case 3:
@@ -70,7 +73,7 @@ public class Main {
                         }
                         break;
                     case 3:
-                        PhoneService.printNewestPhone(PhoneDao.getPhoneList());
+                        System.out.println(PhoneService.getNewestPhone(PhoneDao.getPhoneList()));
                         break;
                     case 4:
                         TvDao.addSmartTv(ConsoleReader.createSmartTv());

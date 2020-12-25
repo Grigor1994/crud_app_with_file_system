@@ -1,6 +1,6 @@
 package com.grigor.picsart.model.credential;
 
-public class Credentials {
+public final class Credentials {
     private final String login;
     private final String password;
 
