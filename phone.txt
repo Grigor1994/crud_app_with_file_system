@@ -4,4 +4,5 @@ Nokia,N73,81981434L79N,2007,170,Symbian S60,1100,TFT,3G,false,false,true,true,tr
 Siemens,CX75,ASHFKA451E,1998,102,Siemens OS,560,TFT,GSM,false,false,false,true,false,true,15
 Motorola,L7E,FHSJKHD45,2005,150,Motorola OS,850,TFT,GSM,false,false,true,true,false,true,64
 LG,KG 700,ASHGFJET5648I,2014,102,BADA,3520,IPS,3G,true,false,true,true,true,true,32000
-
+Nokia,asas,fdgffggf,1566,123,Nokia OS,4656,ddff,gfg,true,false,true,true,false,true,350
+fdgffh,dfdfdf,ffdfd,123,155,dfdfgf,4546,dfddf,fddfdf,true,true,true,true,true,true,464

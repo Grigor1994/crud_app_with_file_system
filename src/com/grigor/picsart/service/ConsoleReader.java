@@ -1,6 +1,7 @@
 package com.grigor.picsart.service;
 
 import com.grigor.picsart.model.credential.Credentials;
+import com.grigor.picsart.model.electronic.laptop.Laptop;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
 import com.grigor.picsart.model.user.User;
@@ -11,80 +12,125 @@ public class ConsoleReader {
 
     public static SmartTV createSmartTv() {
         Scanner scanner = new Scanner(System.in);
-        SmartTV smartTV = new SmartTV();
+
         System.out.println("Input Tv brand: ");
-        smartTV.setBrand(scanner.nextLine());
+        String brand = scanner.nextLine();
         System.out.println("Input Tv model: ");
-        smartTV.setModel(scanner.nextLine());
+        String model = scanner.nextLine();
         System.out.println("Input serial number: ");
-        smartTV.setSerialNumber(scanner.nextLine());
-        System.out.println("Input produce year: ");
-        smartTV.setReleaseYear(scanner.nextInt());
+        String serialNumber = scanner.nextLine();
+        System.out.println("Input release year: ");
+        int releaseYear = scanner.nextInt();
         System.out.println("Input Tv weight");
-        smartTV.setWeight(scanner.nextInt());
+        int weight = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input display type");
-        smartTV.setDisplayType(scanner.nextLine());
+        String displayType = scanner.nextLine();
         System.out.println("Input response time `Integer`");
-        smartTV.setResponseTime(scanner.nextInt());
+        int responseTime = scanner.nextInt();
         System.out.println("Input screen diagonal size ");
-        smartTV.setScreenDiagonal(scanner.nextInt());
+        int diagonalSize = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input matrix type");
-        smartTV.setMatrixType(scanner.nextLine());
+        String matrixType = scanner.nextLine();
         System.out.println("Input operating system");
-        smartTV.setOperatingSystem(scanner.nextLine());
+        String operatingSystem = scanner.nextLine();
         System.out.println("Is WiFi..? Input please `true` or `false`");
-        smartTV.setHasWiFi(scanner.nextBoolean());
+        boolean hasWiFi = scanner.nextBoolean();
         System.out.println("Is bluetooth..? Input please `true` or `false`");
-        smartTV.setHasBluetooth(scanner.nextBoolean());
+        boolean hasBluetooth = scanner.nextBoolean();
 
-        return smartTV;
+        return new SmartTV.Builder().setBrand(brand).setModel(model)
+                .setSerialNumber(serialNumber).setReleaseYear(releaseYear)
+                .setWeight(weight).setDisplayType(displayType).setResponseTime(responseTime)
+                .setScreenDiagonal(diagonalSize).setMatrixType(matrixType).setOperatingSystem(operatingSystem)
+                .setHasWiFi(hasWiFi).setHasBluetooth(hasBluetooth).build();
     }
 
     public static MobilePhone createMobilePhone() {
 
         Scanner scanner = new Scanner(System.in);
-        MobilePhone mobilePhone = new MobilePhone();
 
         System.out.println("Input phone brand: ");
-        mobilePhone.setBrand(scanner.nextLine());
+        String brand = scanner.nextLine();
         System.out.println("Input model: ");
-        mobilePhone.setModel(scanner.nextLine());
+        String model = scanner.nextLine();
         System.out.println("Input serial number: ");
-        mobilePhone.setSerialNumber(scanner.nextLine());
-        System.out.println("Input produce year: ");
-        mobilePhone.setReleaseYear(scanner.nextInt());
+        String serialNumber = scanner.nextLine();
+        System.out.println("Input release year: ");
+        int releaseYear = scanner.nextInt();
         System.out.println("Input phone weight: ");
-        mobilePhone.setWeight(scanner.nextInt());
+        int weight = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input operating system: ");
-        mobilePhone.setOperatingSystem(scanner.nextLine());
+        String operatingSystem = scanner.nextLine();
         System.out.println("Input battery capacity: ");
-        mobilePhone.setBatteryCapacity(scanner.nextInt());
+        int batteryCapacity = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Input display type");
-        mobilePhone.setDisplayType(scanner.nextLine());
+        String displayType = scanner.nextLine();
         System.out.println("Input network type: ");
-        mobilePhone.setNetworkType(scanner.nextLine());
+        String networkType = scanner.nextLine();
         System.out.println("Is dual sim..? Input please `true` or `false`");
-        mobilePhone.setDualSim(scanner.nextBoolean());
-        System.out.println("Is touch screen..? Input please `true` or `false`");
-        mobilePhone.setHasTouchScreen(scanner.nextBoolean());
-        System.out.println("Is memory card slot..? Input please `true` or `false`");
-        mobilePhone.setHasMemoryCardSlot(scanner.nextBoolean());
-        System.out.println("Is main camera..? Input please `true` or `false`");
-        mobilePhone.setHasMainCamera(scanner.nextBoolean());
-        System.out.println("Is selfie camera..? Input please `true` or `false`");
-        mobilePhone.setHasSelfieCamera(scanner.nextBoolean());
-        System.out.println("Is bluetooth..? Input please `true` or `false`");
-        mobilePhone.setBluetooth(scanner.nextBoolean());
+        boolean isDualSim = scanner.nextBoolean();
+        System.out.println("Has touch screen..? Input please `true` or `false`");
+        boolean hasTouchScreen = scanner.nextBoolean();
+        System.out.println("Has memory card slot..? Input please `true` or `false`");
+        boolean hasMemoryCardSlot = scanner.nextBoolean();
+        System.out.println("Has main camera..? Input please `true` or `false`");
+        boolean hasMainCamera = scanner.nextBoolean();
+        System.out.println("Has selfie camera..? Input please `true` or `false`");
+        boolean hasSelfieCamera = scanner.nextBoolean();
+        System.out.println("Has bluetooth..? Input please `true` or `false`");
+        boolean hasBluetooth = scanner.nextBoolean();
         System.out.println("Input memory size: ");
-        mobilePhone.setMemory(scanner.nextInt());
+        int memory = scanner.nextInt();
 
-        return mobilePhone;
+        return new MobilePhone.Builder().setBrand(brand).setModel(model)
+                .setSerialNumber(serialNumber).setReleaseYear(releaseYear)
+                .setWeight(weight).setOperatingSystem(operatingSystem)
+                .setBatteryCapacity(batteryCapacity).setDisplayType(displayType)
+                .setNetworkType(networkType).setDualSim(isDualSim)
+                .setHasTouchScreen(hasTouchScreen).setHasMemoryCardSlot(hasMemoryCardSlot)
+                .setHasMainCamera(hasMainCamera).setHasSelfieCamera(hasSelfieCamera)
+                .setBluetooth(hasBluetooth).setMemory(memory).build();
     }
 
+    public static Laptop createLaptop() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Input laptop brand: ");
+        String brand = scanner.nextLine();
+        System.out.println("Input model: ");
+        String model = scanner.nextLine();
+        System.out.println("Input serial number: ");
+        String serialNumber = scanner.nextLine();
+        System.out.println("Input release year: ");
+        int releaseYear = scanner.nextInt();
+        System.out.println("Input laptop weight: ");
+        int weight = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Input cpu type: ");
+        String cpu = scanner.nextLine();
+        System.out.println("Input ram size: ");
+        int ram = scanner.nextInt();
+        System.out.println("Input memory size: ");
+        int hdd = scanner.nextInt();
+        System.out.println("Has touch screen.. ? Input please `true` or `false`");
+        boolean hasTouchScreen = scanner.nextBoolean();
+        System.out.println("Input screen diagonal: `For example -> 15.6`");
+        double screenDiagonal = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("Input screen technology: ");
+        String screenTechnology = scanner.nextLine();
+
+        return new Laptop.Builder().setBrand(brand).setModel(model).setSerialNumber(serialNumber)
+                .setReleaseYear(releaseYear).setWeight(weight)
+                .setCpu(cpu).setRam(ram).setHdd(hdd)
+                .setHasTouchScreen(hasTouchScreen)
+                .setScreenDiagonal(screenDiagonal)
+                .setScreenTechnology(screenTechnology).build();
+    }
 
     public static User createUser() {
         Scanner scanner = new Scanner(System.in);

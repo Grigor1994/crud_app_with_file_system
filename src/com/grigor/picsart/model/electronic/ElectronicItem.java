@@ -1,35 +1,19 @@
 package com.grigor.picsart.model.electronic;
 
-public abstract class ElectronicItem {
+public class ElectronicItem {
 
-    private String brand;
-    private String model;
-    private String serialNumber;
-    private int releaseYear;
-    private int weight;
+    private final String brand;
+    private final String model;
+    private final String serialNumber;
+    private final int releaseYear;
+    private final int weight;
 
-    public abstract void turnOn();
-
-    public abstract void turnOff();
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public ElectronicItem(Builder<?> builder) {
+        this.brand = builder.brand;
+        this.model = builder.model;
+        this.serialNumber = builder.serialNumber;
+        this.releaseYear = builder.releaseYear;
+        this.weight = builder.weight;
     }
 
     public String getBrand() {
@@ -52,13 +36,53 @@ public abstract class ElectronicItem {
         return weight;
     }
 
+
+    public static abstract class Builder<T extends Builder<T>> {
+        private String brand;
+        private String model;
+        private String serialNumber;
+        private int releaseYear;
+        private int weight;
+
+        public abstract T getThis();
+
+        public T setBrand(String brand) {
+            this.brand = brand;
+            return this.getThis();
+        }
+
+        public T setModel(String model) {
+            this.model = model;
+            return this.getThis();
+        }
+
+        public T setSerialNumber(String serialNumber) {
+            this.serialNumber = serialNumber;
+            return this.getThis();
+        }
+
+        public T setReleaseYear(int releaseYear) {
+            this.releaseYear = releaseYear;
+            return this.getThis();
+        }
+
+        public T setWeight(int weight) {
+            this.weight = weight;
+            return this.getThis();
+        }
+
+        public ElectronicItem build() {
+            return new ElectronicItem(this);
+        }
+    }
+
     @Override
     public String toString() {
         return
-                "\n brand='" + brand + '\'' + "\n" +
-                        ", model='" + model + '\'' + "\n" +
-                        ", serialNumber='" + serialNumber + '\'' + "\n" +
-                        ", produceYear=" + releaseYear + "\n" +
-                        ", weight=" + weight;
+                "\n brand:'" + brand + '\'' + "\n" +
+                        ", model:'" + model + '\'' + "\n" +
+                        ", serial number:'" + serialNumber + '\'' + "\n" +
+                        ", release year:" + releaseYear + "\n" +
+                        ", weight:" + weight;
     }
 }

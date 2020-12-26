@@ -17,11 +17,7 @@ public class PhoneDao {
     private static final String FILE_PATH = "phone.txt";
 
     public static void addMobilePhone(MobilePhone mobilePhone) {
-        try {
-            writeMobilePhoneToFile(mobilePhone);
-        } catch (IOException e) {
-            throw new EntityException(e);
-        }
+        writeMobilePhoneToFile(mobilePhone);
     }
 
     public static List<MobilePhone> getPhoneList() {
@@ -39,7 +35,7 @@ public class PhoneDao {
         return mobilePhones;
     }
 
-    private static void writeMobilePhoneToFile(MobilePhone mobilePhone) throws IOException {
+    private static void writeMobilePhoneToFile(MobilePhone mobilePhone) {
         String outputText =
                 mobilePhone.getBrand() + COMMA + mobilePhone.getModel() + COMMA
                         + mobilePhone.getSerialNumber() + COMMA + mobilePhone.getReleaseYear() + COMMA
@@ -48,7 +44,11 @@ public class PhoneDao {
                         + mobilePhone.getNetworkType() + COMMA + mobilePhone.isDualSim() + COMMA
                         + mobilePhone.isHasTouchScreen() + COMMA + mobilePhone.isHasMemoryCardSlot() + COMMA
                         + mobilePhone.isHasMainCamera() + COMMA + mobilePhone.isHasSelfieCamera() + COMMA
-                        + mobilePhone.isBluetooth() + COMMA + mobilePhone.getMemory() + "\n";
-        Writer.writeToFile(FILE_PATH, outputText, true);
+                        + mobilePhone.isBluetooth() + COMMA + mobilePhone.getMemory();
+        try {
+            Writer.writeToFile(FILE_PATH, outputText, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

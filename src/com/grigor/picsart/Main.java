@@ -1,13 +1,17 @@
 package com.grigor.picsart;
 
+import com.grigor.picsart.dao.LaptopDao;
 import com.grigor.picsart.dao.PhoneDao;
 import com.grigor.picsart.dao.TvDao;
 import com.grigor.picsart.exception.EntityException;
+import com.grigor.picsart.model.electronic.laptop.Laptop;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
-import com.grigor.picsart.service.*;
+import com.grigor.picsart.service.ConsoleReader;
+import com.grigor.picsart.service.LoginService;
+import com.grigor.picsart.service.PhoneService;
+import com.grigor.picsart.service.UserRegisterService;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -60,7 +64,9 @@ public class Main {
                 System.out.println("3 -> Print newest phone");
                 System.out.println("4 -> Add smart tv");
                 System.out.println("5 -> Print all smart tv's ");
-                System.out.println("6 -> Exit");
+                System.out.println("6 -> Add laptop");
+                System.out.println("7 -> Print all laptops");
+                System.out.println("8 -> Exit");
 
                 int input = scanner.nextInt();
 
@@ -85,6 +91,14 @@ public class Main {
                         }
                         break;
                     case 6:
+                        LaptopDao.addLaptop(ConsoleReader.createLaptop());
+                        break;
+                    case 7:
+                        for (Laptop laptop : LaptopDao.getLaptopList()) {
+                            System.out.print(laptop + " ");
+                        }
+                        break;
+                    case 8:
                         System.out.println("Bye!");
                         break outer;
                     default:
