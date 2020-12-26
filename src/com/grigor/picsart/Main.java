@@ -2,6 +2,7 @@ package com.grigor.picsart;
 
 import com.grigor.picsart.dao.PhoneDao;
 import com.grigor.picsart.dao.TvDao;
+import com.grigor.picsart.exception.EntityException;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
 import com.grigor.picsart.service.*;
@@ -91,7 +92,8 @@ public class Main {
                         break;
                 }
             }
-        } catch (IOException e) {
+        } catch (EntityException e) {
+            System.err.println("Your activity is suspended");
             e.printStackTrace();
         }
     }

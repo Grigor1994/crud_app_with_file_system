@@ -1,5 +1,6 @@
 package com.grigor.picsart.dao;
 
+import com.grigor.picsart.exception.EntityException;
 import com.grigor.picsart.model.user.User;
 import com.grigor.picsart.util.Constants;
 import com.grigor.picsart.util.convert.Converter;
@@ -16,14 +17,13 @@ public class UserDao {
     private static final String FILE_PATH = "database.txt";
 
     public static List<User> getUsers() {
-        List<String> read = null;
+        List<String> read;
         try {
             read = Files.readAllLines(Paths.get(FILE_PATH));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new EntityException(e);
         }
         List<User> userList = new ArrayList<>();
-        assert read != null;
         for (String str : read) {
             String[] usersArray = str.split(Constants.COMMA);
             userList.add(new User(usersArray[0], usersArray[1], usersArray[2], usersArray[3], usersArray[4]));
@@ -39,7 +39,7 @@ public class UserDao {
         try {
             Files.write(Paths.get(FILE_PATH), newUser.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new EntityException(e);
         }
     }
 }

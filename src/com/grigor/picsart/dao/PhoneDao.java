@@ -1,5 +1,6 @@
 package com.grigor.picsart.dao;
 
+import com.grigor.picsart.exception.EntityException;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.util.convert.Converter;
 import com.grigor.picsart.util.reader.Reader;
@@ -15,12 +16,21 @@ import static com.grigor.picsart.util.Constants.COMMA;
 public class PhoneDao {
     private static final String FILE_PATH = "phone.txt";
 
-    public static void addMobilePhone(MobilePhone mobilePhone) throws IOException {
-        writeMobilePhoneToFile(mobilePhone);
+    public static void addMobilePhone(MobilePhone mobilePhone) {
+        try {
+            writeMobilePhoneToFile(mobilePhone);
+        } catch (IOException e) {
+            throw new EntityException(e);
+        }
     }
 
-    public static List<MobilePhone> getPhoneList() throws FileNotFoundException {
-        Reader reader = new Reader(FILE_PATH);
+    public static List<MobilePhone> getPhoneList() {
+        Reader reader;
+        try {
+            reader = new Reader(FILE_PATH);
+        } catch (FileNotFoundException e) {
+            throw new EntityException(e);
+        }
         List<String> data = reader.readAllData();
         List<MobilePhone> mobilePhones = new ArrayList<>();
         for (String datum : data) {

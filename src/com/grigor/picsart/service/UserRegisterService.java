@@ -13,15 +13,15 @@ public class UserRegisterService {
 
     private static final Pattern VALID_PASSWORD_REGEX = Pattern.compile("^(?=(?:.*[A-Z].*){2})(?=(?:.*\\d.*){3})[A-Za-z\\d@$!%*#?&]{8,}$");
 
-    private static final Pattern VALID_USERNAME_REGEX = Pattern.compile("^[A-Za-z_][A-Za-z0-9_]{9,29}$");
+    private static final Pattern VALID_USERNAME_REGEX = Pattern.compile("^[A-Za-z0-9_]{9,29}$");
 
     public static boolean registerUser(User user) {
-        if (!userValidate(user)) {
-            return false;
-        } else {
+        if (userValidate(user)) {
             UserDao.registerUser(user);
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
     private static boolean userValidate(User user) {

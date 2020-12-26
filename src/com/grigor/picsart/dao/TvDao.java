@@ -1,5 +1,6 @@
 package com.grigor.picsart.dao;
 
+import com.grigor.picsart.exception.EntityException;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
 import com.grigor.picsart.util.convert.Converter;
 import com.grigor.picsart.util.reader.Reader;
@@ -19,18 +20,17 @@ public class TvDao {
         try {
             writeSmartTvToFile(smartTV);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new EntityException(e);
         }
     }
 
     public static List<SmartTV> getSmartTvList() {
-        Reader reader = null;
+        Reader reader;
         try {
             reader = new Reader(FILE_PATH);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new EntityException(e);
         }
-        assert reader != null;
         List<String> data = reader.readAllData();
         List<SmartTV> smartTVS = new ArrayList<>();
         for (String datum : data) {
