@@ -2,7 +2,6 @@ package com.grigor.picsart.dao;
 
 import com.grigor.picsart.exception.EntityException;
 import com.grigor.picsart.model.electronic.laptop.Laptop;
-import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.util.convert.Converter;
 import com.grigor.picsart.util.reader.Reader;
 import com.grigor.picsart.util.writer.Writer;

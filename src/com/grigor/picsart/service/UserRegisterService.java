@@ -3,6 +3,7 @@ package com.grigor.picsart.service;
 import com.grigor.picsart.dao.UserDao;
 import com.grigor.picsart.model.user.User;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +15,12 @@ public class UserRegisterService {
     private static final Pattern VALID_PASSWORD_REGEX = Pattern.compile("^(?=(?:.*[A-Z].*){2})(?=(?:.*\\d.*){3})[A-Za-z\\d@$!%*#?&]{8,}$");
 
     private static final Pattern VALID_USERNAME_REGEX = Pattern.compile("^[A-Za-z0-9_]{9,29}$");
+
+    private static final Pattern VALID_STRING_VALUE_REGEX = Pattern.compile("^[A-Za-z, ]++$");
+
+    private static final Pattern VALID_INTEGER_REGEX = Pattern.compile("(\\d+)?");
+
+    private static final Pattern VALID_DOUBLE_REGEX = Pattern.compile("\\d+(\\.\\d+)?");
 
     public static boolean registerUser(User user) {
         if (userValidate(user)) {
@@ -50,17 +57,17 @@ public class UserRegisterService {
         return true;
     }
 
-    private static boolean emailValidate(String emailAddress) {
+    public static boolean emailValidate(String emailAddress) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailAddress);
         return matcher.find();
     }
 
-    private static boolean passwordValidate(String password) {
+    public static boolean passwordValidate(String password) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(password);
         return matcher.find();
     }
 
-    private static boolean userNameValidate(String userName) {
+    public static boolean userNameValidate(String userName) {
         Matcher matcher = VALID_USERNAME_REGEX.matcher(userName);
         return matcher.find();
     }
@@ -72,5 +79,32 @@ public class UserRegisterService {
             }
         }
         return true;
+    }
+
+    public static boolean validateBooleanValue(String value) {
+        return Arrays.asList("true", "false").contains(value);
+    }
+
+    public static boolean validateStringValue(String value) {
+        if (value == null || value.isEmpty()) {
+            return false;
+        }
+        Matcher matcher = VALID_STRING_VALUE_REGEX.matcher(value);
+        return matcher.find();
+    }
+
+
+    public static boolean isNumericDouble(String value) {
+        if (value == null || value.isEmpty()) {
+            return false;
+        }
+        return VALID_DOUBLE_REGEX.matcher(value).matches();
+    }
+
+    public static boolean isNumericInteger(String value) {
+        if (value == null || value.isEmpty()) {
+            return false;
+        }
+        return VALID_INTEGER_REGEX.matcher(value).matches();
     }
 }

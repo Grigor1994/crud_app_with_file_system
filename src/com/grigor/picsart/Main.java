@@ -12,23 +12,20 @@ import com.grigor.picsart.service.LoginService;
 import com.grigor.picsart.service.PhoneService;
 import com.grigor.picsart.service.UserRegisterService;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("1 - Login");
         System.out.println("2-> Register");
         System.out.println("3-> Exit");
         outer:
         while (true) {
-            int input = scanner.nextInt();
+            int input = ConsoleReader.validateAndGet("command number", UserRegisterService::isNumericInteger, Integer.class);
             switch (input) {
                 case 1:
                     if (LoginService.login(ConsoleReader.readCredentials())) {
                         System.out.println("Login successful");
-                        showMenu(scanner);
+                        showMenu();
                     } else {
                         System.out.println("The entered username or password is incorrect.");
                     }
@@ -36,7 +33,7 @@ public class Main {
                 case 2:
                     if (UserRegisterService.registerUser(ConsoleReader.createUser())) {
                         System.out.println("Register successfully!");
-                        showMenu(scanner);
+                        showMenu();
                     } else {
                         System.out.println("Your entered data does not match the registration requirements, please try again.\n");
                         ConsoleReader.createUser();
@@ -52,13 +49,12 @@ public class Main {
 
     }
 
-    private static void showMenu(Scanner scanner) {
+    private static void showMenu() {
         try {
             outer:
             while (true) {
 
                 System.out.println("\n Menu");
-                System.out.println("Input command number");
                 System.out.println("1 -> Add mobile phone");
                 System.out.println("2 -> Print all mobile phones");
                 System.out.println("3 -> Print newest phone");
@@ -68,7 +64,7 @@ public class Main {
                 System.out.println("7 -> Print all laptops");
                 System.out.println("8 -> Exit");
 
-                int input = scanner.nextInt();
+                int input = ConsoleReader.validateAndGet("Input command number", UserRegisterService::isNumericInteger, Integer.class);
 
                 switch (input) {
                     case 1:

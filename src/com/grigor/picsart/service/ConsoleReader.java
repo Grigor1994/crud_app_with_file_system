@@ -7,38 +7,24 @@ import com.grigor.picsart.model.electronic.tv.SmartTV;
 import com.grigor.picsart.model.user.User;
 
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class ConsoleReader {
 
     public static SmartTV createSmartTv() {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Input Tv brand: ");
-        String brand = scanner.nextLine();
-        System.out.println("Input Tv model: ");
-        String model = scanner.nextLine();
-        System.out.println("Input serial number: ");
-        String serialNumber = scanner.nextLine();
-        System.out.println("Input release year: ");
-        int releaseYear = scanner.nextInt();
-        System.out.println("Input Tv weight");
-        int weight = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Input display type");
-        String displayType = scanner.nextLine();
-        System.out.println("Input response time `Integer`");
-        int responseTime = scanner.nextInt();
-        System.out.println("Input screen diagonal size ");
-        int diagonalSize = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Input matrix type");
-        String matrixType = scanner.nextLine();
-        System.out.println("Input operating system");
-        String operatingSystem = scanner.nextLine();
-        System.out.println("Is WiFi..? Input please `true` or `false`");
-        boolean hasWiFi = scanner.nextBoolean();
-        System.out.println("Is bluetooth..? Input please `true` or `false`");
-        boolean hasBluetooth = scanner.nextBoolean();
+        String brand = validateAndGet("tv brand", UserRegisterService::validateStringValue, String.class);
+        String model = validateAndGet("tv model", UserRegisterService::validateStringValue, String.class);
+        String serialNumber = validateAndGet("serial number", UserRegisterService::validateStringValue, String.class);
+        int releaseYear = validateAndGet("release year", UserRegisterService::isNumericInteger, Integer.class);
+        int weight = validateAndGet("tv weight", UserRegisterService::isNumericInteger, Integer.class);
+        String displayType = validateAndGet("display type", UserRegisterService::validateStringValue, String.class);
+        int responseTime = validateAndGet("response time", UserRegisterService::isNumericInteger, Integer.class);
+        int diagonalSize = validateAndGet("diagonal size `Integer`", UserRegisterService::isNumericInteger, Integer.class);
+        String matrixType = validateAndGet("matrix type", UserRegisterService::validateStringValue, String.class);
+        String operatingSystem = validateAndGet("operating system", UserRegisterService::validateStringValue, String.class);
+        boolean hasWiFi = validateAndGet("Wi Fi,Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean hasBluetooth = validateAndGet("Bluetooth,Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
 
         return new SmartTV.Builder().setBrand(brand).setModel(model)
                 .setSerialNumber(serialNumber).setReleaseYear(releaseYear)
@@ -49,42 +35,22 @@ public class ConsoleReader {
 
     public static MobilePhone createMobilePhone() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Input phone brand: ");
-        String brand = scanner.nextLine();
-        System.out.println("Input model: ");
-        String model = scanner.nextLine();
-        System.out.println("Input serial number: ");
-        String serialNumber = scanner.nextLine();
-        System.out.println("Input release year: ");
-        int releaseYear = scanner.nextInt();
-        System.out.println("Input phone weight: ");
-        int weight = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Input operating system: ");
-        String operatingSystem = scanner.nextLine();
-        System.out.println("Input battery capacity: ");
-        int batteryCapacity = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Input display type");
-        String displayType = scanner.nextLine();
-        System.out.println("Input network type: ");
-        String networkType = scanner.nextLine();
-        System.out.println("Is dual sim..? Input please `true` or `false`");
-        boolean isDualSim = scanner.nextBoolean();
-        System.out.println("Has touch screen..? Input please `true` or `false`");
-        boolean hasTouchScreen = scanner.nextBoolean();
-        System.out.println("Has memory card slot..? Input please `true` or `false`");
-        boolean hasMemoryCardSlot = scanner.nextBoolean();
-        System.out.println("Has main camera..? Input please `true` or `false`");
-        boolean hasMainCamera = scanner.nextBoolean();
-        System.out.println("Has selfie camera..? Input please `true` or `false`");
-        boolean hasSelfieCamera = scanner.nextBoolean();
-        System.out.println("Has bluetooth..? Input please `true` or `false`");
-        boolean hasBluetooth = scanner.nextBoolean();
-        System.out.println("Input memory size: ");
-        int memory = scanner.nextInt();
+        String brand = validateAndGet("phone brand", UserRegisterService::validateStringValue, String.class);
+        String model = validateAndGet("phone model", UserRegisterService::validateStringValue, String.class);
+        String serialNumber = validateAndGet("serial number", UserRegisterService::validateStringValue, String.class);
+        int releaseYear = validateAndGet("release year", UserRegisterService::isNumericInteger, Integer.class);
+        int weight = validateAndGet("phone weight", UserRegisterService::isNumericInteger, Integer.class);
+        String operatingSystem = validateAndGet("operating system", UserRegisterService::validateStringValue, String.class);
+        int batteryCapacity = validateAndGet("battery capacity `Integer`", UserRegisterService::isNumericInteger, Integer.class);
+        String displayType = validateAndGet("display type", UserRegisterService::validateStringValue, String.class);
+        String networkType = validateAndGet("network type", UserRegisterService::validateStringValue, String.class);
+        boolean isDualSim = validateAndGet("dual sim.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean hasTouchScreen = validateAndGet("touch screen.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean hasMemoryCardSlot = validateAndGet("memory card slot.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean hasMainCamera = validateAndGet("main camera.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean hasSelfieCamera = validateAndGet("selfie camera.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean hasBluetooth = validateAndGet("bluetooth.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        int memory = validateAndGet("memory size", UserRegisterService::isNumericInteger, Integer.class);
 
         return new MobilePhone.Builder().setBrand(brand).setModel(model)
                 .setSerialNumber(serialNumber).setReleaseYear(releaseYear)
@@ -97,32 +63,19 @@ public class ConsoleReader {
     }
 
     public static Laptop createLaptop() {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Input laptop brand: ");
-        String brand = scanner.nextLine();
-        System.out.println("Input model: ");
-        String model = scanner.nextLine();
-        System.out.println("Input serial number: ");
-        String serialNumber = scanner.nextLine();
-        System.out.println("Input release year: ");
-        int releaseYear = scanner.nextInt();
-        System.out.println("Input laptop weight: ");
-        int weight = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Input cpu type: ");
-        String cpu = scanner.nextLine();
-        System.out.println("Input ram size: ");
-        int ram = scanner.nextInt();
-        System.out.println("Input memory size: ");
-        int hdd = scanner.nextInt();
-        System.out.println("Has touch screen.. ? Input please `true` or `false`");
-        boolean hasTouchScreen = scanner.nextBoolean();
+        String brand = validateAndGet("laptop brand", UserRegisterService::validateStringValue, String.class);
+        String model = validateAndGet("laptop model", UserRegisterService::validateStringValue, String.class);
+        String serialNumber = validateAndGet("serial number", UserRegisterService::validateStringValue, String.class);
+        int releaseYear = validateAndGet("release year", UserRegisterService::isNumericInteger, Integer.class);
+        int weight = validateAndGet("laptop weight", UserRegisterService::isNumericInteger, Integer.class);
+        String cpu = validateAndGet("cpu type", UserRegisterService::validateStringValue, String.class);
+        int ram = validateAndGet("ram size", UserRegisterService::isNumericInteger, Integer.class);
+        int hdd = validateAndGet("memory size", UserRegisterService::isNumericInteger, Integer.class);
+        boolean hasTouchScreen = validateAndGet("touch screen.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
         System.out.println("Input screen diagonal: `For example -> 15.6`");
-        double screenDiagonal = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.println("Input screen technology: ");
-        String screenTechnology = scanner.nextLine();
+        double screenDiagonal = validateAndGet("screen diagonal: `For example -> 15.6`", UserRegisterService::isNumericDouble, Double.class);
+        String screenTechnology = validateAndGet("screen technology", UserRegisterService::validateStringValue, String.class);
 
         return new Laptop.Builder().setBrand(brand).setModel(model).setSerialNumber(serialNumber)
                 .setReleaseYear(releaseYear).setWeight(weight)
@@ -133,17 +86,11 @@ public class ConsoleReader {
     }
 
     public static User createUser() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input name ->");
-        String name = scanner.nextLine();
-        System.out.println("Input surname ->");
-        String surName = scanner.nextLine();
-        System.out.println("Input user name -> (minimum 10 symbols.)");
-        String userName = scanner.nextLine();
-        System.out.println("Input email address ->");
-        String email = scanner.nextLine();
-        System.out.println("Input password -> (password will be minimum 8 symbols and will contain 2 uppercase letter and 3 number.)");
-        String password = scanner.nextLine();
+        String name = validateAndGet("name", UserRegisterService::validateStringValue, String.class);
+        String surName = validateAndGet("surname", UserRegisterService::validateStringValue, String.class);
+        String userName = validateAndGet("user name -> (minimum 10 symbols.)", UserRegisterService::userNameValidate, String.class);
+        String email = validateAndGet("email address", UserRegisterService::emailValidate, String.class);
+        String password = validateAndGet("password -> (password will be minimum 8 symbols and will contain 2 uppercase letter and 3 number.)", UserRegisterService::passwordValidate, String.class);
         return new User(name, surName, userName, email, password);
     }
 
@@ -155,5 +102,35 @@ public class ConsoleReader {
         System.out.println("Password ->");
         String password = scanner.nextLine();
         return new Credentials(userName, password);
+    }
+
+    public static <T> T validateAndGet(String propertyName, Predicate<String> predicate, Class<T> type) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input " + propertyName + ": ");
+        String line;
+        while (true) {
+            line = scanner.nextLine();
+            if (predicate.test(line)) {
+                break;
+            } else {
+                System.out.print(propertyName + " is invalid, input again: ");
+            }
+        }
+
+        if (type == String.class) {
+            return type.cast(line);
+        }
+        if (type == Boolean.class) {
+            return type.cast(Boolean.valueOf(line));
+        }
+        if (type == Integer.class) {
+            return type.cast(Integer.valueOf(line));
+        }
+        if (type == Double.class) {
+            return type.cast(Double.valueOf(line));
+        }
+
+        throw new IllegalArgumentException("Unsupported class type");
     }
 }

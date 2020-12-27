@@ -95,14 +95,12 @@ public class Laptop extends ElectronicItem {
 
     @Override
     public String toString() {
-        return "Laptop{" +
-                super.toString() +
+        return super.toString() +
                 ",cpu:'" + cpu + '\'' +
-                ", ram:" + ram +
-                ", hdd:" + hdd +
+                ", ram:" + ram +"mb"+
+                ", hdd:" + hdd +"mb"+
                 ", hasTouchScreen:" + hasTouchScreen +
-                ", screenDiagonal:" + screenDiagonal +
-                ", screenTechnology:'" + screenTechnology + '\'' +
-                "} ";
+                ", screenDiagonal:" + screenDiagonal +"inch"+
+                ", screenTechnology:'" + screenTechnology;
     }
 }
