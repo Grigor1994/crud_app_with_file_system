@@ -1,8 +1,11 @@
 package com.grigor.picsart.model.electronic.tv;
 
+import com.grigor.picsart.model.StringRepresentableObject;
 import com.grigor.picsart.model.electronic.ElectronicItem;
 
-public class SmartTV extends ElectronicItem {
+import java.util.List;
+
+public class SmartTV extends ElectronicItem implements StringRepresentableObject {
     private final String displayType;
     private final int responseTime;
     private final int screenDiagonal;
@@ -20,6 +23,13 @@ public class SmartTV extends ElectronicItem {
         this.operatingSystem = builder.operatingSystem;
         this.hasWiFi = builder.hasWiFi;
         this.hasBluetooth = builder.hasBluetooth;
+    }
+
+    @Override
+    public List<String> fieldsAsString() {
+        return List.of(brand, model, serialNumber, String.valueOf(releaseYear), String.valueOf(weight), displayType,
+                String.valueOf(responseTime), String.valueOf(screenDiagonal),
+                matrixType, operatingSystem, String.valueOf(hasWiFi), String.valueOf(hasBluetooth));
     }
 
     public static class Builder extends ElectronicItem.Builder<Builder> {

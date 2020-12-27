@@ -1,6 +1,7 @@
 package com.grigor.picsart.service;
 
-import com.grigor.picsart.dao.UserDao;
+import com.grigor.picsart.database.dao.UserDao;
+import com.grigor.picsart.exception.ValidationException;
 import com.grigor.picsart.model.user.User;
 
 import java.util.Arrays;
@@ -16,45 +17,22 @@ public class UserRegisterService {
 
     private static final Pattern VALID_USERNAME_REGEX = Pattern.compile("^[A-Za-z0-9_]{9,29}$");
 
-    private static final Pattern VALID_STRING_VALUE_REGEX = Pattern.compile("^[A-Za-z, ]++$");
+    private static final Pattern VALID_STRING_VALUE_REGEX = Pattern.compile("^[a-zA-Z0-9_ ]*$");
 
     private static final Pattern VALID_INTEGER_REGEX = Pattern.compile("(\\d+)?");
 
     private static final Pattern VALID_DOUBLE_REGEX = Pattern.compile("\\d+(\\.\\d+)?");
 
-    public static boolean registerUser(User user) {
-        if (userValidate(user)) {
-            UserDao.registerUser(user);
-            return true;
-        } else {
-            return false;
-        }
+    public static void registerUser(User user) {
+        userValidate(user);
+        UserDao.registerUser(user);
     }
 
-    private static boolean userValidate(User user) {
-        // check user name
-        if (user.getUserName().equals("")) {
-            System.out.println("Name field cannot be empty");
-            return false;
+    private static void userValidate(User user) {
+
+        if (!checkDuplicates(user.getUserName())) {
+            throw new ValidationException("User with this login already exists, please choose another name.");
         }
-        if (!userNameValidate(user.getUserName())) {
-            System.out.println("Incorrect user name.");
-            return false;
-        } else if (!checkDuplicates(user.getUserName())) {
-            System.out.println("User with this login already exists, please choose another name.");
-            return false;
-        }
-        // check email
-        if (!emailValidate(user.getEmail())) {
-            System.out.println("Incorrect email address.");
-            return false;
-        }
-        // check password
-        if (!passwordValidate(user.getPassword())) {
-            System.out.println("Incorrect password.");
-            return false;
-        }
-        return true;
     }
 
     public static boolean emailValidate(String emailAddress) {
@@ -81,8 +59,11 @@ public class UserRegisterService {
         return true;
     }
 
-    public static boolean validateBooleanValue(String value) {
-        return Arrays.asList("true", "false").contains(value);
+    public static boolean validateAnswer(String value) {
+        if (value == null || value.isEmpty()) {
+            return false;
+        }
+        return Arrays.asList("yes", "no").contains(value.toLowerCase());
     }
 
     public static boolean validateStringValue(String value) {

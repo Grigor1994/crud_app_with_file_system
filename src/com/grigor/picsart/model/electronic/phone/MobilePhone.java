@@ -1,8 +1,11 @@
 package com.grigor.picsart.model.electronic.phone;
 
+import com.grigor.picsart.model.StringRepresentableObject;
 import com.grigor.picsart.model.electronic.ElectronicItem;
 
-public class MobilePhone extends ElectronicItem {
+import java.util.List;
+
+public class MobilePhone extends ElectronicItem implements StringRepresentableObject {
 
     private final String operatingSystem;
     private final int batteryCapacity;
@@ -73,6 +76,14 @@ public class MobilePhone extends ElectronicItem {
 
     public int getMemory() {
         return memory;
+    }
+
+    @Override
+    public List<String> fieldsAsString() {
+        return List.of(brand, model, serialNumber, String.valueOf(releaseYear), String.valueOf(weight),
+                operatingSystem, String.valueOf(batteryCapacity), displayType,
+                networkType, String.valueOf(isDualSim), String.valueOf(hasTouchScreen), String.valueOf(hasMemoryCardSlot),
+                String.valueOf(hasMainCamera), String.valueOf(hasSelfieCamera), String.valueOf(bluetooth), String.valueOf(memory));
     }
 
     public static class Builder extends ElectronicItem.Builder<Builder> {

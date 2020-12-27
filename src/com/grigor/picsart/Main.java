@@ -1,9 +1,10 @@
 package com.grigor.picsart;
 
-import com.grigor.picsart.dao.LaptopDao;
-import com.grigor.picsart.dao.PhoneDao;
-import com.grigor.picsart.dao.TvDao;
+import com.grigor.picsart.database.dao.LaptopDao;
+import com.grigor.picsart.database.dao.PhoneDao;
+import com.grigor.picsart.database.dao.TvDao;
 import com.grigor.picsart.exception.EntityException;
+import com.grigor.picsart.exception.ValidationException;
 import com.grigor.picsart.model.electronic.laptop.Laptop;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
@@ -11,6 +12,8 @@ import com.grigor.picsart.service.ConsoleReader;
 import com.grigor.picsart.service.LoginService;
 import com.grigor.picsart.service.PhoneService;
 import com.grigor.picsart.service.UserRegisterService;
+
+import java.util.Optional;
 
 public class Main {
 
@@ -31,12 +34,13 @@ public class Main {
                     }
                     break;
                 case 2:
-                    if (UserRegisterService.registerUser(ConsoleReader.createUser())) {
+                    try {
+                        UserRegisterService.registerUser(ConsoleReader.createUser());
                         System.out.println("Register successfully!");
                         showMenu();
-                    } else {
-                        System.out.println("Your entered data does not match the registration requirements, please try again.\n");
-                        ConsoleReader.createUser();
+                    } catch (ValidationException e) {
+                        System.out.println(e.getMessage());
+                        UserRegisterService.registerUser(ConsoleReader.createUser());
                     }
                     break;
                 case 3:
@@ -64,7 +68,7 @@ public class Main {
                 System.out.println("7 -> Print all laptops");
                 System.out.println("8 -> Exit");
 
-                int input = ConsoleReader.validateAndGet("Input command number", UserRegisterService::isNumericInteger, Integer.class);
+                int input = ConsoleReader.validateAndGet("command number", UserRegisterService::isNumericInteger, Integer.class);
 
                 switch (input) {
                     case 1:
@@ -76,7 +80,8 @@ public class Main {
                         }
                         break;
                     case 3:
-                        System.out.println(PhoneService.getNewestPhone(PhoneDao.getPhoneList()));
+                        Optional<MobilePhone> newestPhone = PhoneService.getNewestPhone(PhoneDao.getPhoneList());
+                        newestPhone.ifPresentOrElse(System.out::println, () -> System.out.println("No phone."));
                         break;
                     case 4:
                         TvDao.addSmartTv(ConsoleReader.createSmartTv());

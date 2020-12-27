@@ -1,6 +1,6 @@
 package com.grigor.picsart.service;
 
-import com.grigor.picsart.dao.UserDao;
+import com.grigor.picsart.database.dao.UserDao;
 import com.grigor.picsart.model.credential.Credentials;
 import com.grigor.picsart.model.user.User;
 import com.grigor.picsart.util.convert.Converter;

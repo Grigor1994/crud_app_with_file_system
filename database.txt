@@ -1,6 +1,6 @@
 Grigor,Avetisyan,goqorgoqor94,grigor.avetisyan@hotmail.com,asdfdfdhjf456er451
-Ashot,Begoyan,Aristakes1969,arto2020@gmail.com,9a1690e55b5e3c9598f30467827382c4
+Ashot,Begoyan,ashot191919,ash19@gmail.com,9a1690e55b5e3c9598f30467827382c4
 Grigor,Avetisyan,grigorgrigor94,avetisyan94@mail.ru,63b13a059dae6a4c2e8733e7315ed30d
-Ashot,Ashotyan,ashotik123456,ashot19@mail.ru,06c28abc271e7b237efe321011775afa
+Ashot,Ashotyan,ashot123456,ashot19@mail.ru,06c28abc271e7b237efe321011775afa
 Tiko,Sargsyan,tix320320320,tix320@mail.ru,57394b41af957cda8cfa51425bcd0685
 Grigor,Avetisyan,Goqor1012941,goqor94@mail.ru,fd475d2a09b24d977a4f9e06f05ddcf7

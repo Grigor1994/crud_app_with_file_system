@@ -20,11 +20,11 @@ public class ConsoleReader {
         int weight = validateAndGet("tv weight", UserRegisterService::isNumericInteger, Integer.class);
         String displayType = validateAndGet("display type", UserRegisterService::validateStringValue, String.class);
         int responseTime = validateAndGet("response time", UserRegisterService::isNumericInteger, Integer.class);
-        int diagonalSize = validateAndGet("diagonal size `Integer`", UserRegisterService::isNumericInteger, Integer.class);
+        int diagonalSize = validateAndGet("diagonal size", UserRegisterService::isNumericInteger, Integer.class);
         String matrixType = validateAndGet("matrix type", UserRegisterService::validateStringValue, String.class);
         String operatingSystem = validateAndGet("operating system", UserRegisterService::validateStringValue, String.class);
-        boolean hasWiFi = validateAndGet("Wi Fi,Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
-        boolean hasBluetooth = validateAndGet("Bluetooth,Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean hasWiFi = validateAndGet("WiFi", UserRegisterService::validateAnswer, Boolean.class);
+        boolean hasBluetooth = validateAndGet("bluetooth", UserRegisterService::validateAnswer, Boolean.class);
 
         return new SmartTV.Builder().setBrand(brand).setModel(model)
                 .setSerialNumber(serialNumber).setReleaseYear(releaseYear)
@@ -41,15 +41,15 @@ public class ConsoleReader {
         int releaseYear = validateAndGet("release year", UserRegisterService::isNumericInteger, Integer.class);
         int weight = validateAndGet("phone weight", UserRegisterService::isNumericInteger, Integer.class);
         String operatingSystem = validateAndGet("operating system", UserRegisterService::validateStringValue, String.class);
-        int batteryCapacity = validateAndGet("battery capacity `Integer`", UserRegisterService::isNumericInteger, Integer.class);
+        int batteryCapacity = validateAndGet("battery capacity", UserRegisterService::isNumericInteger, Integer.class);
         String displayType = validateAndGet("display type", UserRegisterService::validateStringValue, String.class);
         String networkType = validateAndGet("network type", UserRegisterService::validateStringValue, String.class);
-        boolean isDualSim = validateAndGet("dual sim.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
-        boolean hasTouchScreen = validateAndGet("touch screen.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
-        boolean hasMemoryCardSlot = validateAndGet("memory card slot.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
-        boolean hasMainCamera = validateAndGet("main camera.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
-        boolean hasSelfieCamera = validateAndGet("selfie camera.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
-        boolean hasBluetooth = validateAndGet("bluetooth.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
+        boolean isDualSim = validateAndGet("dual sim", UserRegisterService::validateAnswer, Boolean.class);
+        boolean hasTouchScreen = validateAndGet("touch screen", UserRegisterService::validateAnswer, Boolean.class);
+        boolean hasMemoryCardSlot = validateAndGet("memory card slot", UserRegisterService::validateAnswer, Boolean.class);
+        boolean hasMainCamera = validateAndGet("main camera", UserRegisterService::validateAnswer, Boolean.class);
+        boolean hasSelfieCamera = validateAndGet("selfie camera", UserRegisterService::validateAnswer, Boolean.class);
+        boolean hasBluetooth = validateAndGet("bluetooth", UserRegisterService::validateAnswer, Boolean.class);
         int memory = validateAndGet("memory size", UserRegisterService::isNumericInteger, Integer.class);
 
         return new MobilePhone.Builder().setBrand(brand).setModel(model)
@@ -72,9 +72,8 @@ public class ConsoleReader {
         String cpu = validateAndGet("cpu type", UserRegisterService::validateStringValue, String.class);
         int ram = validateAndGet("ram size", UserRegisterService::isNumericInteger, Integer.class);
         int hdd = validateAndGet("memory size", UserRegisterService::isNumericInteger, Integer.class);
-        boolean hasTouchScreen = validateAndGet("touch screen.. Input please `true` or `false`", UserRegisterService::validateBooleanValue, Boolean.class);
-        System.out.println("Input screen diagonal: `For example -> 15.6`");
-        double screenDiagonal = validateAndGet("screen diagonal: `For example -> 15.6`", UserRegisterService::isNumericDouble, Double.class);
+        boolean hasTouchScreen = validateAndGet("touch screen", UserRegisterService::validateAnswer, Boolean.class);
+        double screenDiagonal = validateAndGet("screen diagonal:", UserRegisterService::isNumericDouble, Double.class,"for example '15.6'");
         String screenTechnology = validateAndGet("screen technology", UserRegisterService::validateStringValue, String.class);
 
         return new Laptop.Builder().setBrand(brand).setModel(model).setSerialNumber(serialNumber)
@@ -88,9 +87,9 @@ public class ConsoleReader {
     public static User createUser() {
         String name = validateAndGet("name", UserRegisterService::validateStringValue, String.class);
         String surName = validateAndGet("surname", UserRegisterService::validateStringValue, String.class);
-        String userName = validateAndGet("user name -> (minimum 10 symbols.)", UserRegisterService::userNameValidate, String.class);
+        String userName = validateAndGet("user name", UserRegisterService::userNameValidate, String.class, "minimum 10 symbols");
         String email = validateAndGet("email address", UserRegisterService::emailValidate, String.class);
-        String password = validateAndGet("password -> (password will be minimum 8 symbols and will contain 2 uppercase letter and 3 number.)", UserRegisterService::passwordValidate, String.class);
+        String password = validateAndGet("password", UserRegisterService::passwordValidate, String.class, "should be minimum 8 symbols and should contain 2 uppercase letter and 3 number");
         return new User(name, surName, userName, email, password);
     }
 
@@ -104,10 +103,17 @@ public class ConsoleReader {
         return new Credentials(userName, password);
     }
 
-    public static <T> T validateAndGet(String propertyName, Predicate<String> predicate, Class<T> type) {
+    public static <T> T validateAndGet(String propertyName, Predicate<String> predicate, Class<T> type, String propertyRequirements) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Input " + propertyName + ": ");
+        if (type == Boolean.class) {
+            System.out.print("has " + propertyName + "? ('yes' or 'no')");
+        } else {
+            if (propertyRequirements != null) {
+                System.out.printf("%s -> (%s): ", propertyName, propertyRequirements);
+            } else {
+                System.out.print("Input " + propertyName + ": ");
+            }
+        }
         String line;
         while (true) {
             line = scanner.nextLine();
@@ -132,5 +138,9 @@ public class ConsoleReader {
         }
 
         throw new IllegalArgumentException("Unsupported class type");
+    }
+
+    public static <T> T validateAndGet(String propertyName, Predicate<String> predicate, Class<T> type) {
+        return validateAndGet(propertyName, predicate, type, null);
     }
 }

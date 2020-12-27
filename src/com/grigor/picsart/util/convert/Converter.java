@@ -3,18 +3,15 @@ package com.grigor.picsart.util.convert;
 import com.grigor.picsart.model.electronic.laptop.Laptop;
 import com.grigor.picsart.model.electronic.phone.MobilePhone;
 import com.grigor.picsart.model.electronic.tv.SmartTV;
+import com.grigor.picsart.model.user.User;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static com.grigor.picsart.util.Constants.COMMA;
-
 public class Converter {
 
-    public static MobilePhone convertToMobilePhone(String data) {
-        String[] mobileData = data.split(COMMA);
-
+    public static MobilePhone convertToMobilePhone(String[] mobileData) {
         return new MobilePhone.Builder().setBrand(mobileData[0]).setModel(mobileData[1])
                 .setSerialNumber(mobileData[2]).setReleaseYear(Integer.parseInt(mobileData[3]))
                 .setWeight(Integer.parseInt(mobileData[4])).setOperatingSystem(mobileData[5])
@@ -25,9 +22,7 @@ public class Converter {
                 .setBluetooth(Boolean.parseBoolean(mobileData[14])).setMemory(Integer.parseInt(mobileData[15])).build();
     }
 
-    public static SmartTV convertToSmartTv(String data) {
-        String[] tvData = data.split(COMMA);
-
+    public static SmartTV convertToSmartTv(String[] tvData) {
         return new SmartTV.Builder().setBrand(tvData[0]).setModel(tvData[1])
                 .setSerialNumber(tvData[2]).setReleaseYear(Integer.parseInt(tvData[3]))
                 .setWeight(Integer.parseInt(tvData[4])).setDisplayType(tvData[5])
@@ -36,13 +31,16 @@ public class Converter {
                 .setHasBluetooth(Boolean.parseBoolean(tvData[11])).build();
     }
 
-    public static Laptop convertToLaptop(String data) {
-        String[] laptopData = data.split(COMMA);
+    public static Laptop convertToLaptop(String[] laptopData) {
         return new Laptop.Builder().setBrand(laptopData[0]).setModel(laptopData[1]).setSerialNumber(laptopData[2])
                 .setReleaseYear(Integer.parseInt(laptopData[3])).setWeight(Integer.parseInt(laptopData[4]))
                 .setCpu(laptopData[5]).setRam(Integer.parseInt(laptopData[6])).setHdd(Integer.parseInt(laptopData[7]))
                 .setHasTouchScreen(Boolean.parseBoolean(laptopData[8])).setScreenDiagonal(Double.parseDouble(laptopData[9]))
                 .setScreenTechnology(laptopData[10]).build();
+    }
+
+    public static User convertToUser(String[] userData) {
+        return new User(userData[0], userData[1], userData[2], userData[3], userData[4]);
     }
 
     // hash password to MD5

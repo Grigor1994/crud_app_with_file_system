@@ -1,1 +1,2 @@
 Lenovo,ThinkPad T530,ALEI788925EKJ,2020,1,Intel Core i7 9750H,16,512,true,15.6,IPS
+Asus,Zenbook Z3,ASFJHJETELE617,2020,2,Intel core i7 9750H,32,512,true,15.6,IPS

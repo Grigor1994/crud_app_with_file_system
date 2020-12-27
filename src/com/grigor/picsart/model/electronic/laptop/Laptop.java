@@ -1,8 +1,11 @@
 package com.grigor.picsart.model.electronic.laptop;
 
+import com.grigor.picsart.model.StringRepresentableObject;
 import com.grigor.picsart.model.electronic.ElectronicItem;
 
-public class Laptop extends ElectronicItem {
+import java.util.List;
+
+public class Laptop extends ElectronicItem implements StringRepresentableObject {
     private final String cpu;
     private final int ram;
     private final int hdd;
@@ -18,6 +21,12 @@ public class Laptop extends ElectronicItem {
         this.hasTouchScreen = builder.hasTouchScreen;
         this.screenDiagonal = builder.screenDiagonal;
         this.screenTechnology = builder.screenTechnology;
+    }
+
+    @Override
+    public List<String> fieldsAsString() {
+        return List.of(brand, model, serialNumber, String.valueOf(releaseYear), String.valueOf(weight),
+                cpu, String.valueOf(ram), String.valueOf(hdd), String.valueOf(hasTouchScreen), String.valueOf(screenDiagonal), screenTechnology);
     }
 
     public static class Builder extends ElectronicItem.Builder<Builder> {
@@ -97,10 +106,11 @@ public class Laptop extends ElectronicItem {
     public String toString() {
         return super.toString() +
                 ",cpu:'" + cpu + '\'' +
-                ", ram:" + ram +"mb"+
-                ", hdd:" + hdd +"mb"+
+                ", ram:" + ram + "mb" +
+                ", hdd:" + hdd + "mb" +
                 ", hasTouchScreen:" + hasTouchScreen +
-                ", screenDiagonal:" + screenDiagonal +"inch"+
-                ", screenTechnology:'" + screenTechnology;
+                ", screenDiagonal:" + screenDiagonal + "inch" +
+                ", screenTechnology:'" + screenTechnology
+                + "\n--------------------------------------";
     }
 }

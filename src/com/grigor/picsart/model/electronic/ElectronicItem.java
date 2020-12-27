@@ -2,11 +2,11 @@ package com.grigor.picsart.model.electronic;
 
 public class ElectronicItem {
 
-    private final String brand;
-    private final String model;
-    private final String serialNumber;
-    private final int releaseYear;
-    private final int weight;
+    protected final String brand;
+    protected final String model;
+    protected final String serialNumber;
+    protected final int releaseYear;
+    protected final int weight;
 
     public ElectronicItem(Builder<?> builder) {
         this.brand = builder.brand;

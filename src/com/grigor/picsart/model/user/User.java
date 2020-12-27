@@ -1,6 +1,10 @@
 package com.grigor.picsart.model.user;
 
-public class User {
+import com.grigor.picsart.model.StringRepresentableObject;
+
+import java.util.List;
+
+public class User implements StringRepresentableObject {
     private final String name;
     private final String surName;
     private final String userName;
@@ -48,5 +52,10 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}' + "\n";
+    }
+
+    @Override
+    public List<String> fieldsAsString() {
+        return List.of(name, surName, userName, email, password);
     }
 }
